@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>商品一覧画面</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
+</head>
+<body>
+	<h1>発注システム</h1>
+	<h2>商品一覧画面</h2>
+	<div id="contents">
+		<table>
+		<tr>
+			<th>予約番号</th>
+			<th>予約日</th>
+			<th>予約時間</th>
+			<th>ランダム値</th>
+			<th>アドバイザー番号</th>
+			<th>ユーザー名</th>
+			<th>メールアドレス</th>
+		</tr>
+		<tr th:each="product:${productList}">
+			<td th:text="${product.pid}"/></td>
+			<td th:text="${product.pname}"/></td>
+			<td th:text="${product.category}"/></td>
+			<td th:text="${product.price}"/></td>
+			<td th:text="${product.stock}"/></td>
+		</tr>
+		</table>
+	</div>
+</body>
+</html>
