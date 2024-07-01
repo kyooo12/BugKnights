@@ -14,7 +14,7 @@ h3 {
 	margin: 0px;
 }
 
-button{
+.button{
 	display: block;
 	text-align: center;
 	vertical-align: middle;
@@ -29,7 +29,7 @@ button{
 	color: #fff;
 	transition: 0.5s;
 }
-button:hover {
+.button:hover {
 	color: #27acd9;
 	background: #fff;
 }
