@@ -13,6 +13,7 @@ import com.example.demo.entity.Reserve;
 import com.example.demo.form.InquiryForm;
 import com.example.demo.repository.AdviserRepository;
 import com.example.demo.repository.ReserveRepository;
+import com.example.demo.service.InquiryService;
 
 import lombok.AllArgsConstructor;
 
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 public class InquiryController {
 	private final ReserveRepository reserveRepository;
 	private final AdviserRepository adviserRepository;
+	private final InquiryService inquiryService;
 	
 	@GetMapping("/inquiryForm")
 	public String showForm(InquiryForm inquiryForm) {
@@ -31,10 +33,9 @@ public class InquiryController {
 	public ModelAndView reserveSearch(@ModelAttribute @Validated InquiryForm inquiryForm,
 								BindingResult result,
 								ModelAndView mv) {
-		System.out.println(inquiryForm.getUserMail() + inquiryForm.getCode());
+		Reserve reserve = inquiryService.getInquaryData(inquiryForm, result);
+				
 		if(!result.hasErrors()) {
-			Reserve reserve =
-				reserveRepository.findAllByUserMailAndCode(inquiryForm.getUserMail(), inquiryForm.getCode());
 			Adviser adviser = 
 				adviserRepository.findById(reserve.getNo()).get();				
 			mv.addObject("reserve", reserve);
