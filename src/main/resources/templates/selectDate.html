@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>動的カレンダー</title>
+<title>カレンダーと予約情報</title>
 <style>
     table {
         border-collapse: collapse;
@@ -12,6 +12,14 @@
         border: 1px solid black;
         padding: 5px;
         text-align: center;
+    }
+    .reserved {
+        background-color: red;
+        color: white;
+    }
+    .available {
+        background-color: green;
+        color: white;
     }
 </style>
 </head>
@@ -43,6 +51,13 @@
     currentYear = today.getFullYear();
     currentMonth = today.getMonth();
 
+    // 予約情報のサンプルデータ (日付をキーとした予約状態の配列)
+    var reservations = {
+        '2024-07-05': true,   // 2024年7月5日が予約済み
+        '2024-07-15': false,  // 2024年7月15日が空いている
+        '2024-07-20': true    // 2024年7月20日が予約済み
+    };
+
     // カレンダーを表示する関数
     function showCalendar(year, month) {
         // ヘッダーの曜日を設定
@@ -64,7 +79,15 @@
         }
         for (var i = startDate.getDate(); i <= endDate.getDate(); i++) {
             var dayCell = document.createElement('td');
+            var dateKey = year + '-' + (month + 1 < 10 ? '0' + (month + 1) : month + 1) + '-' + (i < 10 ? '0' + i : i);
             dayCell.textContent = i;
+            if (reservations[dateKey] === true) {
+                dayCell.classList.add('reserved');
+                dayCell.textContent += ' ×';
+            } else {
+                dayCell.classList.add('available');
+                dayCell.textContent += ' ○';
+            }
             currentRow.appendChild(dayCell);
             if (currentRow.children.length % 7 == 0) {
                 body.appendChild(currentRow);
