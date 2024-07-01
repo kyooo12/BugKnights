@@ -8,6 +8,6 @@ public class TestViewController {
 	
 	@GetMapping("/test")
 	public String testView() {
-		return "Contents";
+		return "selectDate";
 	}
 }

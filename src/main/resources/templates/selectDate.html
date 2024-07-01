@@ -1,38 +1,116 @@
 <!DOCTYPE html>
-<html>
-	
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>日程選択</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約カレンダー</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .available {
+            color: green;
+        }
+        .booked {
+            color: red;
+        }
+    </style>
 </head>
-
 <body>
+    <h2>予約カレンダー</h2>
+    <table id="calendar">
+        <thead>
+            <tr>
+                <th>日</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+            </tr>
+        </thead>
+        <tbody id="calendar-body">
+            <!-- JavaScriptで生成する予定 -->
+        </tbody>
+    </table>
 
-<header>
-	<h1>日程選択</h1>
-</header>
+    <script>
+        // 予約の状態をシミュレートするためのデータ（仮定）
+const reservationStatus = {
+    '2024-07-01': true,   // 予約あり
+    '2024-07-05': false,  // 予約なし
+    // 他の日付も同様に設定する
+};
 
+// 今日の日付を取得する
+const today = new Date();
+const currentYear = today.getFullYear();
+const currentMonth = today.getMonth();
+
+// カレンダーのテーブル要素と本文部分を取得する
+const calendarBody = document.getElementById('calendar-body');
+
+// カレンダーの日付を生成する関数
+function generateCalendar(year, month) {
+    // 月の初日を設定する
+    const firstDay = new Date(year, month, 1);
+    // 月の最終日を取得する
+    const lastDay = new Date(year, month + 1, 0);
+
+    let html = '';
+
+    // 日付を進めていくためのカウンター
+    let date = new Date(firstDay);
+
+    // 今月のカレンダーを生成する
+    while (date <= lastDay) {
+        if (date.getDay() === 0) {
+            html += '<tr>';
+        }
+
+        if (date.getMonth() === month) {
+            const dateString = date.toISOString().split('T')[0];
+            const status = reservationStatus[dateString] ? 'booked' : 'available';
+            const mark = reservationStatus[dateString] ? '×' : '○';
+            html += `<td class="${status}">${date.getDate()} ${mark}</td>`;
+        } else {
+            html += '<td></td>';
+        }
+
+        if (date.getDay() === 6) {
+            html += '</tr>';
+        }
+
+        date.setDate(date.getDate() + 1);
+    }
+
+    // 残りのセルを埋める
+    while (date.getDay() > 0 && date.getDay() <= 6) {
+        html += '<td></td>';
+        date.setDate(date.getDate() + 1);
+    }
+
+    return html;
+}
+
+// 今月のカレンダーを生成して表示する
+calendarBody.innerHTML = generateCalendar(currentYear, currentMonth);
+
+// 次の月のカレンダーを生成して表示する
+const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+calendarBody.innerHTML += generateCalendar(nextYear, nextMonth);
+
+    </script>
 </body>
-
-
-<head>
-	<meta charset="UTF-8">
-	<title>日程選択</title>
-	<link rel="stylesheet" href="./css/style.css">
-</head>
-
-<body>
-
-	<header>
-		<h1>日程選択</h1>
-	</header>
-
-	<main>
-		<h2>アドバイザー：田中太郎</h2>
-	</main>
-
-</body>
-
-
 </html>
