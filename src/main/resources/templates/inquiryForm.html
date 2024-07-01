@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org">
 	
 <head>
     <meta charset="UTF-8">
@@ -29,17 +29,17 @@
 			</div>
 			
 			<div class="row justify-content-start">
-				<form action="reserveSearch" method="post">
+				<form action="reserveSearch" method="post" th:object="${inquiryForm}">
 					<div class="row justify-content-start">
 						<div class="col-sm-12 h3">
 							<label for="mail" style="font-weight: bold;">メールアドレス</label><br>
-							<input class="col-sm-5" type="text" name="mailaddress" id="mail" placeholder="12345@example.com">
+							<input class="col-sm-5" type="text" name="userMail" id="mail" placeholder="12345@example.com" th:value="*{userMail}">
 						</div>
 					</div>
 					<div class="row justify-content-start">
 						<div class="col-sm-12 h3">
 							<label for="reference" style="font-weight: bold;">予約番号</label><br>
-							<input class="col-sm-5" type="text" name="reference-no" id="reference" placeholder="10ケタの番号を入力"><br>
+							<input class="col-sm-5" type="text" name="code" id="reference" placeholder="10ケタの番号を入力" th:value="*{code}"><br>
 						</div>
 					</div>
 					<div class="row justify-content-start">
