@@ -33,3 +33,23 @@ h3 {
 	color: #27acd9;
 	background: #fff;
 }
+
+.buttonCan{
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 250px;
+	margin: auto;
+	padding: 0.8rem 4rem;
+	font-size: 1.0rem;
+	font-weight: bold;
+	border: 2px solid rgb(255, 197, 21);
+	background: rgb(255, 197, 21);
+	color: #fff;
+	transition: 0.5s;
+}
+.buttonCan:hover {
+	color: #27acd9;
+	background: #fff;
+}
