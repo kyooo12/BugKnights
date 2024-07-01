@@ -19,12 +19,14 @@
 			<th>ユーザー名</th>
 			<th>メールアドレス</th>
 		</tr>
-		<tr th:each="product:${productList}">
-			<td th:text="${product.pid}"/></td>
-			<td th:text="${product.pname}"/></td>
-			<td th:text="${product.category}"/></td>
-			<td th:text="${product.price}"/></td>
-			<td th:text="${product.stock}"/></td>
+		<tr th:each="reserve:${reserveList}">
+			<td th:text="${reserve.no}"/></td>
+			<td th:text="${reserve.date}"/></td>
+			<td th:text="${reserve.time}"/></td>
+			<td th:text="${reserve.code}"/></td>
+			<td th:text="${reserve.adviserCd}"/></td>
+			<td th:text="${reserve.userName}"/></td>
+			<td th:text="${reserve.userMail}"/></td>
 		</tr>
 		</table>
 	</div>

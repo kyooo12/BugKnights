@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.entity.Reserve;
@@ -15,9 +16,11 @@ import lombok.AllArgsConstructor;
 public class TestController {
 	private final ReserveRepository reserveRepository;
 	
+	@GetMapping("/reserveList")
 	public ModelAndView showReserveList(ModelAndView mv) {
 		List<Reserve> reserveList = reserveRepository.findAll();
 		mv.addObject("reserveList", reserveList);
-		mv.setViewName("");
+		mv.setViewName("testReserveView");
+		return mv;
 	}
 }
