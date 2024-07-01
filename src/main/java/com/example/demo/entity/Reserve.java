@@ -38,4 +38,7 @@ public class Reserve {
 	
 	@Column(name = "user_mail")
 	private String userMail;
+	
+	@Column(name = "user_comment")
+	private String comment;
 }

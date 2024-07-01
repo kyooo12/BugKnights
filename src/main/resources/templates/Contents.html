@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-	
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>予約内容</title>
@@ -22,10 +22,10 @@
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
 					<h2>日時</h2>
-					<h3>○○月○○日：○○～</h3>
+					<h3><span th:text="${reserve.date}"></span>：<span th:text="${reserve.time}"></span>～</h3>
 					<br>
 					<h2>アドバイザー</h2>
-					<h3>○○</h3>
+					<h3 th:text="${adviser.name}"></h3>
 				</div>
 			</div>
 			<div class="row my-4 py-2" style="background-color: rgb(210, 210, 210);">
@@ -34,14 +34,14 @@
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
 					<h2>ご予約者氏名</h2>
-					<h3>○○</h3>
+					<h3 th:text="${reserve.userName}"></h3>
 					<br>
 					<h2>メールアドレス</h2>
-					<h3>1234@example.com</h3>
+					<h3 th:text="${reserve.userMail}"></h3>
 					<br>
 					<h2>ご要望・ご相談</h2>
 					<div>
-			    		ここにコメントが入る。
+			    		<h3 th:text="${reserve.comment}"></h3>
 					</div>
 				</div>
 			</div>

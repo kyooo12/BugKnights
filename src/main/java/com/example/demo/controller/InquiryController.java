@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InquiryForm;
 import com.example.demo.repository.AdviserRepository;
@@ -34,8 +35,11 @@ public class InquiryController {
 		if(!result.hasErrors()) {
 			Reserve reserve =
 				reserveRepository.findAllByUserMailAndCode(inquiryForm.getUserMail(), inquiryForm.getCode());
+			Adviser adviser = 
+				adviserRepository.findById(reserve.getNo()).get();				
 			mv.addObject("reserve", reserve);
-			mv.setViewName("testReserveView2");
+			mv.addObject("adviser", adviser);
+			mv.setViewName("Contents");
 		} else {
 			mv.setViewName("inquiryForm");
 		}
