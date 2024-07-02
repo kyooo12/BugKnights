@@ -1,116 +1,163 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>予約カレンダー</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .available {
-            color: green;
-        }
-        .booked {
-            color: red;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>日付と予約状態を表示するカレンダー</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 300px;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+    .reserved {
+        background-color: red;
+        color: white;
+    }
+    .available {
+        background-color: green;
+        color: white;
+    }
+    .status {
+        font-size: 12px;
+        display: block;
+        margin-top: 5px;
+    }
+    .status span {
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
-    <h2>予約カレンダー</h2>
-    <table id="calendar">
+
+<h2 id="calendar-heading">カレンダー</h2>
+
+<div id="calendar-container">
+    <table id="calendar-table">
         <thead>
-            <tr>
-                <th>日</th>
-                <th>月</th>
-                <th>火</th>
-                <th>水</th>
-                <th>木</th>
-                <th>金</th>
-                <th>土</th>
-            </tr>
+            <tr id="calendar-header"></tr>
         </thead>
-        <tbody id="calendar-body">
-            <!-- JavaScriptで生成する予定 -->
-        </tbody>
+        <tbody id="calendar-body"></tbody>
     </table>
 
-    <script>
-        // 予約の状態をシミュレートするためのデータ（仮定）
-const reservationStatus = {
-    '2024-07-01': true,   // 予約あり
-    '2024-07-05': false,  // 予約なし
-    // 他の日付も同様に設定する
-};
+    <div id="calendar-buttons">
+        <button onclick="previousMonth()">前の月へ</button>
+        <button onclick="nextMonth()">次の月へ</button>
+    </div>
+</div>
 
-// 今日の日付を取得する
-const today = new Date();
-const currentYear = today.getFullYear();
-const currentMonth = today.getMonth();
+<script>
+    var currentYear, currentMonth;
+    var headerRow = document.getElementById('calendar-header');
+    var body = document.getElementById('calendar-body');
 
-// カレンダーのテーブル要素と本文部分を取得する
-const calendarBody = document.getElementById('calendar-body');
+    // 初期表示は今月のカレンダー
+    var today = new Date();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
 
-// カレンダーの日付を生成する関数
-function generateCalendar(year, month) {
-    // 月の初日を設定する
-    const firstDay = new Date(year, month, 1);
-    // 月の最終日を取得する
-    const lastDay = new Date(year, month + 1, 0);
+    // 予約情報のサンプルデータ (日付をキーとした予約状態の配列)
+    var reservations = {
+        '2024-07-05': true,   // 2024年7月5日が予約済み
+        '2024-07-15': false,  // 2024年7月15日が空いている
+        '2024-07-20': true    // 2024年7月20日が予約済み
+    };
 
-    let html = '';
+    // カレンダーを表示する関数
+    function showCalendar(year, month) {
+        // ヘッダーの曜日を設定
+        var days = ['日', '月', '火', '水', '木', '金', '土'];
+        headerRow.innerHTML = '';
+        days.forEach(function(day) {
+            var th = document.createElement('th');
+            th.textContent = day;
+            headerRow.appendChild(th);
+        });
 
-    // 日付を進めていくためのカウンター
-    let date = new Date(firstDay);
+        // カレンダーのボディを生成
+        body.innerHTML = '';
+        var startDate = new Date(year, month, 1);
+        var endDate = new Date(year, month + 1, 0);
+        var currentRow = document.createElement('tr');
+        for (var i = 0; i < startDate.getDay(); i++) {
+            currentRow.appendChild(document.createElement('td'));
+        }
+        for (var i = startDate.getDate(); i <= endDate.getDate(); i++) {
+            var dateKey = year + '-' + (month + 1 < 10 ? '0' + (month + 1) : month + 1) + '-' + (i < 10 ? '0' + i : i);
+            var reservationStatus = reservations[dateKey];
 
-    // 今月のカレンダーを生成する
-    while (date <= lastDay) {
-        if (date.getDay() === 0) {
-            html += '<tr>';
+            var dayCell = document.createElement('td');
+
+            // 日付をテキストとして表示
+            var dateText = document.createElement('span');
+            dateText.textContent = i;
+            dayCell.appendChild(dateText);
+
+            // 予約状態に応じて背景色を設定
+            if (reservationStatus === true) {
+                dayCell.classList.add('reserved');
+            } else {
+                dayCell.classList.add('available');
+            }
+
+            // ○×を表示する要素を追加
+            var statusText = document.createElement('span');
+            statusText.classList.add('status');
+            if (reservationStatus === true) {
+                statusText.innerHTML = '<span>×</span>';
+            } else {
+                statusText.innerHTML = '<span>○</span>';
+            }
+            dayCell.appendChild(statusText);
+
+            // ボタンがクリックされたときの処理
+            dayCell.addEventListener('click', function() {
+                var selectedDate = dateKey;
+                alert('選択された日付: ' + selectedDate);
+                // ここに他の処理を追加する（例: 予約処理など）
+            });
+
+            currentRow.appendChild(dayCell);
+
+            if (currentRow.children.length % 7 == 0) {
+                body.appendChild(currentRow);
+                currentRow = document.createElement('tr');
+            }
+        }
+        if (currentRow.children.length > 0) {
+            body.appendChild(currentRow);
         }
 
-        if (date.getMonth() === month) {
-            const dateString = date.toISOString().split('T')[0];
-            const status = reservationStatus[dateString] ? 'booked' : 'available';
-            const mark = reservationStatus[dateString] ? '×' : '○';
-            html += `<td class="${status}">${date.getDate()} ${mark}</td>`;
-        } else {
-            html += '<td></td>';
-        }
-
-        if (date.getDay() === 6) {
-            html += '</tr>';
-        }
-
-        date.setDate(date.getDate() + 1);
+        // カレンダーのタイトルを設定
+        document.getElementById('calendar-heading').textContent = year + '年' + (month + 1) + '月';
     }
 
-    // 残りのセルを埋める
-    while (date.getDay() > 0 && date.getDay() <= 6) {
-        html += '<td></td>';
-        date.setDate(date.getDate() + 1);
+    // 初回表示
+    showCalendar(currentYear, currentMonth);
+
+    // 前の月へ移動する関数
+    function previousMonth() {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        showCalendar(currentYear, currentMonth);
     }
 
-    return html;
-}
+    // 次の月へ移動する関数
+    function nextMonth() {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        showCalendar(currentYear, currentMonth);
+    }
+</script>
 
-// 今月のカレンダーを生成して表示する
-calendarBody.innerHTML = generateCalendar(currentYear, currentMonth);
-
-// 次の月のカレンダーを生成して表示する
-const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
-const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
-calendarBody.innerHTML += generateCalendar(nextYear, nextMonth);
-
-    </script>
 </body>
 </html>
