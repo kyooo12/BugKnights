@@ -7,18 +7,16 @@
     table {
         border-collapse: collapse;
         width: 300px;
+        background-color: #00bb85;
     }
     th, td {
-        border: 1px solid black;
         padding: 5px;
         text-align: center;
     }
     .reserved {
-        background-color: red;
         color: white;
     }
     .available {
-        background-color: green;
         color: white;
     }
     .status {
@@ -35,6 +33,10 @@
 
 <h2 id="calendar-heading">カレンダー</h2>
 
+<div id="calendar-buttons">
+    <button onclick="previousMonth()">＜</button>
+    <button onclick="nextMonth()">＞</button>
+</div>
 <div id="calendar-container">
     <table id="calendar-table">
         <thead>
@@ -42,11 +44,6 @@
         </thead>
         <tbody id="calendar-body"></tbody>
     </table>
-
-    <div id="calendar-buttons">
-        <button onclick="previousMonth()">前の月へ</button>
-        <button onclick="nextMonth()">次の月へ</button>
-    </div>
 </div>
 
 <script>
@@ -107,15 +104,18 @@
             var statusText = document.createElement('span');
             statusText.classList.add('status');
             if (reservationStatus === true) {
-                statusText.innerHTML = '<span>×</span>';
+                statusText.innerHTML = '<span style="color: red;">×</span>';
             } else {
-                statusText.innerHTML = '<span>○</span>';
+                statusText.innerHTML = '<span style="color: green;">○</span>';
             }
             dayCell.appendChild(statusText);
 
+            // 日付のdateKeyを保存する属性を追加
+            dayCell.setAttribute('data-datekey', dateKey);
+
             // ボタンがクリックされたときの処理
             dayCell.addEventListener('click', function() {
-                var selectedDate = dateKey;
+                var selectedDate = this.getAttribute('data-datekey');
                 alert('選択された日付: ' + selectedDate);
                 // ここに他の処理を追加する（例: 予約処理など）
             });
@@ -140,6 +140,7 @@
 
     // 前の月へ移動する関数
     function previousMonth() {
+		if (currentYear === today.getFullYear() && currentMonth === today.getMonth()) return; // 前の月には遷移不可
         currentMonth--;
         if (currentMonth < 0) {
             currentMonth = 11;
@@ -150,6 +151,8 @@
 
     // 次の月へ移動する関数
     function nextMonth() {
+		var maxDate = new Date(today.getFullYear(), today.getMonth() + 3, 0); // 先２カ月まで遷移可能
+		if(new Date(currentYear, currentMonth + 1) > maxDate) return;
         currentMonth++;
         if (currentMonth > 11) {
             currentMonth = 0;
