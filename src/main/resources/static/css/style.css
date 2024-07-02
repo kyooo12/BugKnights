@@ -1,9 +1,17 @@
 @charset "UTF-8";
 header {
-	margin: 0 0 10px 0;
-	padding: 20px;
-	background-color: yellow;
-	color: black;
+	margin: 0 0 20px 0;
+	padding: 50px;
+	background-color:rgb(18, 122, 216);
+	color: rgb(255, 255, 255);
+}
+
+.header{
+	font-size: 60px;
+}
+
+.header2{
+	font-size: 30px;
 }
 
 h1 {
