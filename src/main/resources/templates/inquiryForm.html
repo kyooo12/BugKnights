@@ -10,41 +10,32 @@
 
 <body>
 	<header class="py-sm-5 py-md-3">
-		<h1 class="py-sm-5 py-md-3">予約照会</h1>
+		<p class="h1-sm h2-md">予約照会</p>
 	</header>
 	
 	<main class="ms-2">
-<!--		<h1>メールアドレスと予約番号を入力してください。</h1>-->
-<!--		<form action="reserveSearch" method="post" class="inquiry">-->
-<!--			<label for="mail" style="font-weight: bold;">メールアドレス</label><br>-->
-<!--				<input type="text" name="mailaddress" id="mail" placeholder="12345@example.com"><br>-->
-<!--			<label for="reference" style="font-weight: bold;">予約番号</label><br>-->
-<!--			<input type="text" name="reference-no" id="reference" placeholder="10ケタの番号を入力"><br>-->
-<!--			<button type="submit" class="btn btn-primary mt-1">次へ</button>-->
-<!--		</form>-->
-		
 		<div class="container-fluid">
-			<div class="row justify-content-start">
-				<div class="col-sm-12 fs-2">メールアドレスと予約番号を入力してください。</div>
+			<div class="row justify-content-center">
+				<div class="col-sm-7 fs-2">メールアドレスと予約番号を入力してください。</div>
 			</div>
 			
-			<div class="row justify-content-start">
+			<div class="row justify-content-center">
 				<form action="reserveSearch" method="post" th:object="${inquiryForm}">
-					<div class="row justify-content-start">
-						<div class="col-sm-12 h3">
+					<div class="row justify-content-center">
+						<div class="col-sm-6 h3">
 							<label for="mail" style="font-weight: bold;">メールアドレス</label><br>
-							<input class="col-sm-5" type="text" name="userMail" id="mail" placeholder="12345@example.com" th:value="*{userMail}">
+							<input class="offset-1 col-sm-10" type="email" name="userMail" id="mail" placeholder="12345@example.com" th:value="*{userMail}">
 						</div>
 					</div>
-					<div class="row justify-content-start">
-						<div class="col-sm-12 h3">
+					<div class="row justify-content-center">
+						<div class="col-sm-6 h3">
 							<label for="reference" style="font-weight: bold;">予約番号</label><br>
-							<input class="col-sm-5" type="text" name="code" id="reference" placeholder="10ケタの番号を入力" th:value="*{code}"><br>
+							<input class="offset-1 col-sm-10" type="text" name="code" id="reference" placeholder="10ケタの番号を入力" th:value="*{code}"><br>
 							<span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
 						</div>
 					</div>
-					<div class="row justify-content-start">
-						<button type="submit" class="offset-1 col-sm-2 btn btn-primary mt-1">次へ</button>
+					<div class="row justify-content-center">
+						<button type="submit" class="col-sm-2 btn btn-primary mt-1">次へ</button>
 					</div>
 				</form>
 			</div>

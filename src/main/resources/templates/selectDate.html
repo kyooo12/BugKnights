@@ -104,9 +104,10 @@
             var statusText = document.createElement('span');
             statusText.classList.add('status');
             if (reservationStatus === true) {
-                statusText.innerHTML = '<span style="color: red;">×</span>';
+                statusText.innerHTML = '<span style="color: green;">○</span>';                
             } else {
-                statusText.innerHTML = '<span style="color: green;">○</span>';
+				statusText.innerHTML = '<span style="color: red;">×</span>';
+
             }
             dayCell.appendChild(statusText);
 
