@@ -34,7 +34,6 @@ public class InquiryController {
 								BindingResult result,
 								ModelAndView mv) {
 		Reserve reserve = inquiryService.getInquaryData(inquiryForm, result);
-				
 		if(!result.hasErrors()) {
 			Adviser adviser = 
 				adviserRepository.findById(reserve.getNo()).get();				
