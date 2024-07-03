@@ -44,7 +44,7 @@
 					<h3 class="header2">営業時間:10:00 ～ 20:00</h3>
 				</div>
 				<div class="col-5 justify-content-end">
-					<button type="submit" id="headBtn" class="btnTop btn btn-outline-light">予約照会・キャンセル</button>
+					<button type="submit" id="headBtn" class="btnTop btn btn-outline-light" onclick="location.href='/inquiryForm'">予約照会・キャンセル</button>
 				</div>
 			</div>
 		</div>
@@ -181,12 +181,6 @@
 	</main>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script>
-		headBtn.addEventListener('click', function() {
-			location.replace("/inquiryForm"); 
-        }, false);
-	</script>
-
 </body>
 
 </html>
