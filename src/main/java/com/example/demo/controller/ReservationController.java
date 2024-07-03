@@ -1,9 +1,20 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.Model.SelectDateModel;
+import com.example.demo.Model.SelectDateUtil;
+import com.example.demo.entity.Reserve;
+import com.example.demo.repository.ReserveRepository;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -12,10 +23,23 @@ import lombok.AllArgsConstructor;
 @Controller
 public class ReservationController {
 	private final HttpSession session;
+	private final ReserveRepository reserveRepository;
 	
 	//カレンダーに飛ぶ用。○×用のデータ用意する
-	@GetMapping("/selectDate")
-	public ModelAndView selectDate(ModelAndView mv) {
+	@PostMapping("/selectDate")
+	public ModelAndView selectDate(@RequestParam("adviserCode") String adviserCd,
+									ModelAndView mv) {
+		session.setAttribute("adviserCd", adviserCd);
+		LocalDate nowDate = LocalDate.now();
+		LocalDate afterDate = nowDate.plusMonths(2);
+		List<Reserve> reserveList = reserveRepository.findAllByAdviserCdAndDate(adviserCd, nowDate, afterDate);
+		List<SelectDateModel> list = SelectDateUtil.getSelectDate(reserveList, nowDate, afterDate);
+		Map<String, Boolean> map = new HashMap<>();
+		list.forEach( d -> {
+			map.put(d.getDate(), d.isMaxTime());
+		});
+		mv.addObject("dateMap", map);
+		mv.setViewName("selectDate");
 		return mv;
 	}
 	
