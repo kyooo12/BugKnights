@@ -6,6 +6,22 @@
     <title>キャンセル完了</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+		.cancel{
+			font-size: 80px;
+		}
+		
+		.canceltxt{
+			font-size: 50px;
+		}
+		
+		.btn{
+			 width: 350px;
+             height:80px;
+             font-size: 190%;
+		}
+		
+	</style>
 </head>
 
 <body>
@@ -15,16 +31,27 @@
 	</header>
 	
     <main>
-		<div>
-            <h1 style="text-align:center">キャンセル完了</h1>
+		<div class="row py-5"></div>
+		<div class="cancel row py-5 my-5 justify-content-center">
+            キャンセル完了
 		</div>
-		<div>
-            <h3 style="text-align:center">再度予約する際はTOPページからお願いします</h3>
+		<div class="row"></div>
+		<div class="canceltxt row py-5 my-5 justify-content-center">
+			<div class="col-6">
+            	再度予約する際はTOPページからお願いします。
+			</div>
 		</div>
+        <div class="row justify-content-center">
+        	<button type="submit" id="Btn" class="btn btn btn-primary">TOPへ戻る</button>
+        </div>
         
-        <a href="http://localhost:8080/top.html" class="button">TOPへ戻る</a>
     </main>
     
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
+   <script>
+		Btn.addEventListener('click', function() {
+			location.replace("top"); 
+        }, false);
+	</script>
 </body>
 </html>
