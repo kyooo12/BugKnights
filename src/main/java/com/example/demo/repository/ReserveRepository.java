@@ -16,7 +16,12 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 			+ "WHERE adviser_cd = :adviserCd AND reserve_date BETWEEN :nowDate AND :afterDate", nativeQuery = true)
 	List<Reserve> findAllByAdviserCdAndDate(@Param("adviserCd") String adviserCd,
 											@Param("nowDate") LocalDate nowDate,
-											@Param("afterDate") LocalDate afterDate);	
+											@Param("afterDate") LocalDate afterDate);
+	
+	@Query(value = "SELECT * FROM t_reserve "
+			+ "WHERE adviser_cd = :adviserCd AND reserve_date = :selectDate", nativeQuery = true)
+	List<Reserve> findAllByAdviserCdAndSelectDate(@Param("adviserCd") String adviserCd,
+									@Param("selectDate") LocalDate selectDate);
 	
 	//予約照会SQL
 	@Query(value = "SELECT * FROM t_reserve "

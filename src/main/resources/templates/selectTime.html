@@ -1,80 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>時間選択</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>時間選択</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <style>
-        .time {
-            background-color: white;
-            border-bottom: solid black thin;
-        }
-        
-        .time:hover {
-            background-color: #ffff8e;
-        }
+	<style>
+		.time {
+			background-color: white;
+			border-bottom: solid black thin;
+		}
 
-        .reserved {
-            background-color: rgb(208, 208, 208);
-            pointer-events: none; /* 選択不可にする */
-        }
-    </style>
+		.time:hover {
+			background-color: #ffff8e;
+		}
+
+		.reserved {
+			background-color: rgb(208, 208, 208);
+			pointer-events: none;
+			/* 選択不可にする */
+		}
+	</style>
 </head>
 
 <body>
-    
-    <header>
-        <h1>時間帯選択</h1>
-    </header>
-    
-    <div class="container">
+
+	<header>
+		<h1>時間帯選択</h1>
+	</header>
+
+	<div class="container">
 		<div class="row">
 			<div id="adviser" class="h1">
 				アドバイザー：田中太郎
 			</div>
 		</div>
-        <div class="time row">
-            <a href="input" class="text-black fs-2" id="time-10" style="text-decoration:none;">10:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-11" style="text-decoration:none;">11:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-12" style="text-decoration:none;">12:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-13" style="text-decoration:none;">13:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-14" style="text-decoration:none;">14:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-15" style="text-decoration:none;">15:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-16" style="text-decoration:none;">16:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-17" style="text-decoration:none;">17:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-18" style="text-decoration:none;">18:00</a>
-        </div>
-        <div class="time row my-3">
-            <a href="input" class="text-black fs-2" id="time-19" style="text-decoration:none;">19:00</a>
-        </div>
-    </div>
+		<form id="timeForm" action="/input" method="post">
+			<input type="hidden" name="selectTime" id="selectTime">
+			<div class="time row">
+				<a href="#" class="text-black fs-2" id="time-10" style="text-decoration:none;">10:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-11" style="text-decoration:none;">11:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-12" style="text-decoration:none;">12:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-13" style="text-decoration:none;">13:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-14" style="text-decoration:none;">14:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-15" style="text-decoration:none;">15:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-16" style="text-decoration:none;">16:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-17" style="text-decoration:none;">17:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-18" style="text-decoration:none;">18:00</a>
+			</div>
+			<div class="time row my-3">
+				<a href="#" class="text-black fs-2" id="time-19" style="text-decoration:none;">19:00</a>
+			</div>
+		</form>
+	</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
-    <script>
-        // ここに予約済みの時間帯を取得し、該当する要素にreservedクラスを追加するJavaScriptコードを追加する
-        // 以下は例としてidを使って一部の時間帯を予約済みとし、reservedクラスを追加するコード例です
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"></script>
+	<script th:inline="javascript">
+		// ここに予約済みの時間帯を取得し、該当する要素にreservedクラスを追加するJavaScriptコードを追加する
 
-        // 例：10:00と12:00が予約済みの場合
-        document.getElementById('time-10').classList.add('reserved');
-        document.getElementById('time-12').classList.add('reserved');
-    </script>
+		const reserveList = /*[[${reserveList}]]*/"reserveList";
+
+		reserveList.forEach(reserve => {
+			const time = reserve.time.substr(0, 2);
+			document.getElementById('time-' + time).classList.add('reserved');
+		});
+		
+		const form = document.getElementById('timeForm');
+		for (let i = 0; i < 10; i++) {
+			const time = document.getElementById('time-' + (i + 10));
+			time.addEventListener('click', () => {
+				const time = (i + 10) + ':00:00';
+				document.getElementById('selectTime').setAttribute('value', time);
+				console.log(document.getElementById('selectTime').getAttribute('value'));
+				form.submit();
+			});
+		}
+	</script>
 </body>
+
 </html>
