@@ -107,41 +107,47 @@
 	            var reservationStatus = reservations[dateKey];
 	
 	            var dayCell = document.createElement('td');
-	            
-	            // 日付のdateKeyを保存する属性を追加
-	            dayCell.setAttribute('data-datekey', dateKey);
 	
 	            // 日付をテキストとして表示
 	            var dateText = document.createElement('span');
 	            dateText.textContent = i;
 	            dayCell.appendChild(dateText);
-	
+
 	            // 予約状態に応じて背景色を設定
 	            if (reservationStatus === true) {
 	                dayCell.classList.add('reserved');
 	            } else {
 	                dayCell.classList.add('available');
 	            }
-	
+	            
 	            // ○×を表示する要素を追加
-	            var statusText = document.createElement('span');
-	            statusText.classList.add('status');
-	            if (reservationStatus === true) {
-	                statusText.innerHTML = '<span style="color: red;">×</span>';
-	            } else {
-					statusText.innerHTML = '<a href="selectTime" class="btn btn-outline-light btn-sm" style="color: green;">○</span>';
-	            }
-	            dayCell.appendChild(statusText);
-	
+				var statusText = document.createElement('span');
+                statusText.setAttribute('data-datekey', dateKey);
+				statusText.classList.add('status');
+                var dateForm = document.createElement('form');
+                dateForm.setAttribute('action', 'dateForm');
+                dateForm.setAttribute('method', 'post');
+				if (reservationStatus === true) {
+				    statusText.innerHTML = '<button disabled class="btn btn-outline-light btn-sm" style="color: red;">Ｘ</span>';
+				} else {
+				    statusText.innerHTML = '<button type="submit" id="decidedDate" name="decidedDate" class="btn btn-outline-light btn-sm" style="color: green;">○</span>';
+				    
+				}
+                dateForm.appendChild(statusText);
+				dayCell.appendChild(dateForm);
+
 	            // ボタンがクリックされたときの処理
-	            dayCell.addEventListener('click', function() {
-	                var selectedDate = this.getAttribute('data-datekey');
-	                alert('選択された日付: ' + selectedDate);
+	            statusText.addEventListener('click', function() {
+                    // 日付のdateKeyを保存する属性を追加
+                    var selectedDate = this.getAttribute('data-datekey');
+				    document.getElementById('decidedDate').setAttribute('value', selectedDate);
+	                var chooseDate = document.getElementById('decidedDate').value;
+	               	alert('選択された日は、' + chooseDate);
 	                // ここに他の処理を追加する（例: 予約処理など）
 	            });
-	
+
 	            currentRow.appendChild(dayCell);
-	
+
 	            if (currentRow.children.length % 7 == 0) {
 	                body.appendChild(currentRow);
 	                currentRow = document.createElement('tr');
