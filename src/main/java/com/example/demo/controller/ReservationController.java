@@ -71,11 +71,11 @@ public class ReservationController {
 	}
 	
 	//お客様情報入力に飛ぶ
-	@PostMapping("/input")
+	@PostMapping("/inputForm")
 	public String userInfoForm(@RequestParam("selectTime") String selectTime,
 								ModelAndView mv) {
 		session.setAttribute("selectTime", selectTime);
 		System.out.println(selectTime);
-		return "input";
+		return "inputForm";
 	}
 }
