@@ -12,7 +12,7 @@
         }
 		
 		.inquirytxt{
-			font-size: 50px;
+			font-size: 70px;
 		}
 		
 		.btn{
@@ -24,7 +24,7 @@
 		.txtbox{
 		    display: inline-block;
 		    width: 100%;
-		    padding: 0.5em;
+		    padding: 1em;
 		    border: 1px solid #999;
 		    box-sizing: border-box;
 		    background: #f2f2f2;
@@ -48,23 +48,28 @@
 			<div class="row justify-content-center">
 				<form action="reserveSearch" method="post" th:object="${inquiryForm}">
 					<div class="row justify-content-center">
-						<div class="col-8">
-							<label for="mail" style="font-weight: bold; font-size: 50px;">メールアドレス</label><br>
+						<div class="col-10">
+							<label for="mail" style="font-weight: bold; font-size: 60px;">メールアドレス</label><br>
 						</div>
-						<div class="col-sm-6 pb-5 h2">
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-sm-10 pb-5 h2">
 							<input class="txtbox offset-1 col-sm-10" type="email" name="userMail" id="mail" placeholder="12345@example.com" th:value="*{userMail}">
 						</div>
 					</div>
-					<div class="row pb-5 justify-content-center">
-						<div class="col-8">
-							<label for="reference" style="font-weight: bold; font-size: 50px;">予約番号</label><br>
+					
+					<div class="row justify-content-center">
+						<div class="col-10">
+							<label for="reference" style="font-weight: bold; font-size: 60px;">予約番号</label><br>
 						</div>
-						<div class="col-sm-6 pb-5 h2">							
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-sm-10 pb-5 h2">							
 							<input class="txtbox offset-1 col-sm-10" type="text" name="code" id="reference" placeholder="10ケタの番号を入力" th:value="*{code}"><br>
 							<span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
 						</div>
 					</div>
-					<div class="row justify-content-center">
+					<div class="row pt-5 justify-content-center">
 						<button type="submit" class="btn col-sm-2 btn btn-primary mt-1">次へ</button>
 					</div>
 				</form>
