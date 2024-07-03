@@ -24,11 +24,10 @@
 		}
 		
 		.btnTop	{
-			 width: 330px;
-             height:50px;
-             font-size: 170%;
+			 width: 350px;
+             height:80px;
+             font-size: 190%;
 		}
-		
 
 	</style>
 </head>
@@ -45,7 +44,7 @@
 					<h3 class="header2">営業時間:10:00 ～ 20:00</h3>
 				</div>
 				<div class="col-5 justify-content-end">
-					<a href="inquiryForm" class="btnTop btn btn-outline-light">予約照会・キャンセル</a>
+					<button type="submit" id="headBtn" class="btnTop btn btn-outline-light">予約照会・キャンセル</button>
 				</div>
 			</div>
 		</div>
@@ -104,7 +103,7 @@
 				<div  class="row text-center py-5">
 					
 					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">佐藤花子さんで予約する</button>
+						<button type="submit" name="adviserCode" value="2" class="btnTop btn btn-primary">佐藤花子さんで予約する</button>
 					</form>
 				</div>
 			</div>
@@ -127,7 +126,7 @@
 				<div  class="row text-center py-5">
 					
 					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">鈴木一郎さんで予約する</button>
+						<button type="submit" name="adviserCode" value="3" class="btnTop btn btn-primary">鈴木一郎さんで予約する</button>
 					</form>
 				</div>
 			</div>
@@ -150,7 +149,7 @@
 				<div  class="row text-center py-5">
 					
 					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">高橋美咲さんで予約する</button>
+						<button type="submit" name="adviserCode" value="4" class="btnTop btn btn-primary">高橋美咲さんで予約する</button>
 					</form>
 				</div>
 			</div>
@@ -173,7 +172,7 @@
 				<div  class="row text-center py-5">
 					
 					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">中村健太さんで予約する</button>
+						<button type="submit" name="adviserCode" value="5" class="btnTop btn btn-primary">中村健太さんで予約する</button>
 					</form>
 				</div>
 			</div>
@@ -182,6 +181,11 @@
 	</main>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+		headBtn.addEventListener('click', function() {
+			location.replace("inquiryForm"); 
+        }, false);
+	</script>
 
 </body>
 
