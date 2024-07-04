@@ -111,11 +111,18 @@
 		// ここに予約済みの時間帯を取得し、該当する要素にreservedクラスを追加するJavaScriptコードを追加する
 
 		const reserveList = /*[[${reserveList}]]*/"reserveList";
+		const nowTimeList = /*[[${nowTimeList}]]*/"nowTimeList";
 
 		reserveList.forEach(reserve => {
 			const time = reserve.time.substr(0, 2);
 			document.getElementById('time-' + time).classList.add('reserved');
 		});
+		
+		if(nowTimeList.length != 0) {
+			nowTimeList.forEach(time => {
+				document.getElementById('time-' + time).classList.add('reserved');
+			})
+		}
 		
 		const form = document.getElementById('timeForm');
 		for (let i = 0; i < 10; i++) {
