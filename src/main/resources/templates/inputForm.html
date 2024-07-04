@@ -5,40 +5,81 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>入力画面</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		.header{
+	        font-size: 70px;
+        }
+        
+        .btn{
+			 width: 350px;
+             height:80px;
+             font-size: 40px;
+		}
+		
+		.txt{
+			font-weight: bold; 
+			font-size: 60px;
+		}
+        
+        .txtbox{
+		    display: inline-block;
+		    width: 100%;
+		    padding: 1em;
+		    border: 1px solid #999;
+		    box-sizing: border-box;
+		    background: #f2f2f2;
+		    margin: 0.5em 0;
+		    font-size: 50px;
+		}
+		
+		.comment{
+			background-color: #f2f2f2;
+			width:100%;
+			height: 400px;
+			font-size: 50px;
+		}
+        
+	</style>
 </head>
 <body>
-    <header class="py-sm-5 py-md-3">
-        <h1 class="py-sm-5 py-md-3">入力画面</h1>
+    <header class="header">
+        入力画面
     </header>
     <main>
         <form action="/Confirmation" method="post">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row mt-5 justify-content-center">
-                    <div class="col-6">
-                        <h2>氏名</h2>
+                    <div class="txt col-10">
+                        氏名
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+					
+                    	<input class="txtbox col-10 pb-5 h1" type="text" name="userName" th:value="*{userName}">
+				
+                </div>
+                
+                <div class="row mt-5 justify-content-center">
+                    <div class="txt col-10">
+                       メールアドレス
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="col-4" type="text" name="userName" id="" placeholder="12345@example.com" th:value="*{userName}">
+                    <input class="txtbox col-10 pb-5 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}">
                 </div>
                 <div class="row mt-5 justify-content-center">
-                    <div class="col-6">
-                        <h2>メールアドレス</h2>
+                    <div class="txt col-10">
+                        ご要望・ご相談
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="col-4" type="email" name="userMail" id="" th:value="*{userMail}">
+					<div class="col-10">
+                    	<textarea class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}"></textarea>
+					</div>
                 </div>
                 <div class="row mt-5 justify-content-center">
-                    <div class="col-6">
-                        <h2>ご要望・ご相談</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <textarea style="resize: none;" name="comment" id="" cols="50" rows="5" th:value="*{comment}"></textarea>
-                </div>
-                <div class="row mt-5 justify-content-center">
-                    <button type="submit" class="btn btn-primary" style="">予約内容を確認</button>
+                    <button type="submit" class="btn btn btn-primary">予約内容を確認</button>
                 </div>
             </div>
         </form>
