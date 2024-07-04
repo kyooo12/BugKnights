@@ -23,6 +23,12 @@
 			pointer-events: none;
 			/* 選択不可にする */
 		}
+		
+		.btn{
+			 width: 200px;
+             height:50px;
+             font-size: 190%;
+		}
 	</style>
 </head>
 
@@ -31,6 +37,12 @@
 	<header>
 		<h1>時間帯選択</h1>
 	</header>
+	
+	<div class="row pb-5 justify-content-center">
+		<div class="col-10">
+			<button type="submit" id="headBtn" class="btn btn btn-primary" onclick="location.href='/selectDate'">戻る</button>
+		</div>
+	</div>
 
 	<div class="container">
 		<div class="row">
@@ -71,9 +83,6 @@
 				<a href="#" class="text-black fs-2" id="time-19" style="text-decoration:none;">19:00</a>
 			</div>
 		</form>
-		<div class="row">
-			<button type="submit" class="btn btn btn-primary" id="">戻る</button>
-		</div>
 		
 	</div>
 
