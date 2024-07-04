@@ -1,20 +1,28 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.Model.ConfirmationUtil;
 import com.example.demo.Model.SelectDateModel;
 import com.example.demo.Model.SelectDateUtil;
+import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
+import com.example.demo.form.InputForm;
+import com.example.demo.repository.AdviserRepository;
 import com.example.demo.repository.ReserveRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,6 +33,7 @@ import lombok.AllArgsConstructor;
 public class ReservationController {
 	private final HttpSession session;
 	private final ReserveRepository reserveRepository;
+	private final AdviserRepository adviserRepository;
 	
 	@GetMapping("/")
 	public String index() {
@@ -49,7 +58,7 @@ public class ReservationController {
 		return mv;
 	}
 	
-	//カレンダーから飛んできて、次に日時選択に飛ぶ用
+	//カレンダーから飛んできて、次に時間選択に飛ぶ用
 	@PostMapping("/selectTime")
 	public ModelAndView selectTime(@RequestParam("confirmDate") String selectDate,
 									ModelAndView mv) {
@@ -73,14 +82,44 @@ public class ReservationController {
 		return mv;
 	}
 	
-	//お客様情報入力に飛ぶ
+	//時間選択からお客様情報入力に飛ぶ
 	@PostMapping("/inputForm")
 	public String userInfoForm(@RequestParam("selectTime") String selectTime,
-								ModelAndView mv) {
+								InputForm inputForm) {
 		session.setAttribute("selectTime", selectTime);
 		return "inputForm";
 	}
 	
-//	@PostMapping("/Confitmation")
-//	public ModelAndView 
+	//お客様情報入力から確認画面に飛ぶ
+	@PostMapping("/Confirmation")
+	public ModelAndView confitmationView(@ModelAttribute @Validated InputForm inputForm,
+										BindingResult result,
+										ModelAndView mv) {
+		String adviserCd = (String)session.getAttribute("adviserCd");
+		LocalDate date = (LocalDate)session.getAttribute("selectDate");
+		String stringTime = (String)session.getAttribute("selectTime");
+		LocalTime time = LocalTime.parse(stringTime);	
+		String code = ConfirmationUtil.codeGenerate(10);
+		Adviser adviser = adviserRepository.findById(Integer.parseInt(adviserCd)).get();
+		if(!result.hasErrors()) {
+			Reserve reserve = inputForm.getEntity();
+			reserve.setAdviserCd(adviserCd);
+			reserve.setDate(date);
+			reserve.setTime(time);
+			reserve.setCode(code);
+			mv.addObject("reserve", reserve);
+			mv.addObject("adviser", adviser);
+			session.setAttribute("reserve", reserve);
+			mv.setViewName("Confirmation");
+		} else {
+			mv.setViewName("inputForm");
+		}
+		return mv;
+	}
+	
+	@GetMapping("/Completion")
+	public String Completion() {
+		
+		return "Completion.html";
+	}
 }

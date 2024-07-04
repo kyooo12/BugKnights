@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	
 <head>
     <meta charset="UTF-8">
@@ -22,10 +22,10 @@
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
 					<h2>日時</h2>
-					<h3>○○月○○日：○○～</h3>
+					<h3><span th:text="${reserve.date}"></span>：<span th:text="${reserve.time}"></span></h3>
 					<br>
 					<h2>アドバイザー</h2>
-					<h3>○○</h3>
+					<h3 th:text="${adviser.name}"></h3>
 				</div>
 			</div>
 			<div class="row my-4 py-2" style="background-color: rgb(210, 210, 210);">
@@ -34,20 +34,22 @@
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
 					<h2>ご予約者氏名</h2>
-					<h3>○○</h3>
-					<br>
+					<h3 th:text="${reserve.userName}"></h3>
 					<h2>メールアドレス</h2>
-					<h3>1234@example.com</h3>
+					<h3 th:text="${reserve.userMail}"></h3>
 					<br>
 					<h2>ご要望・ご相談</h2>
-					<div>
+					<div th:text="${reserve.comment}">
 			    		ここにコメントが入る。
 					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center my-5">
 				<div class="col-4">
-					<a href="http://localhost:8080/top.html" class="button">TOPへ戻る</a>
+					<a href="/" class="btn btn-primary">TOPへ戻る</a>
+				</div>
+				<div class="col-4">
+					<a href="/Completion" class="btn btn-primary">予約完了</a>
 				</div>
 			</div>
 		</div>

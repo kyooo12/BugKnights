@@ -12,7 +12,6 @@ import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InquiryForm;
 import com.example.demo.repository.AdviserRepository;
-import com.example.demo.repository.ReserveRepository;
 import com.example.demo.service.InquiryService;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +19,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Controller
 public class InquiryController {
-	private final ReserveRepository reserveRepository;
 	private final AdviserRepository adviserRepository;
 	private final InquiryService inquiryService;
 	

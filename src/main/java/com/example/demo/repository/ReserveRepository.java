@@ -29,6 +29,7 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 	Reserve findAllByUserMailAndCode(@Param("userMail") String userMail, 
 										@Param("code") String code);
 	
+	//予約登録
 	@Query(value = "INSERT INTO t_reserve(reserve_date, reserve_time, reference_code, adviser_cd, user_name, user_mail, user_comment) "
 			+ "VALUES :no, :date, :time, :code, :adviserCd, :userName, :userMail, :comment", nativeQuery = true)
 	void setReserve(@Param("no") Integer no,
