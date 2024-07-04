@@ -1,78 +1,110 @@
 <!DOCTYPE html>
-<html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>日程選択</title>
-<style>
-	header {
-		margin: 0 0 10px 0;
-		padding: 20px;
-		background-color: yellow;
-		color: black;
-	}
-	
-	h1 {
-		margin: 0px;
-	}
-	
-    table {
-        border-collapse: collapse;
-        width: 300px;
-        background-color: #00bb85;
-    }
-    th, td {
-        padding: 5px;
-        text-align: center;
-    }
-    
-    .reserved {
-        color: white;
-    }
-    .available {
-        color: white;
-    }
-    .status {
-        font-size: 12px;
-        display: block;
-        margin-top: 5px;
-    }
-    .status span {
-        font-weight: bold;
-    }
-</style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>日程選択</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<style>
+		.header{
+	        font-size: 70px;
+        }
+		
+		.h1{
+			font-size:60px ;
+		}
+		
+		.year{
+			font-size: 70px;
+		}
+		
+	    table {
+	        border-collapse: collapse;
+	        height: 700px;
+	        width: 300px;
+	        background-color: rgb(229, 229, 229);
+	    }
+	    th, td {
+	        padding: 20px;
+	        text-align: center;
+	    }
+	    
+	    .reserved {
+	        color: white;
+	    }
+	    .available {
+	        color: white;
+	    }
+	    .status {
+	        font-size: 12px;
+	        display: block;
+	        margin-top: 5px;
+	    }
+	    .status span {
+	        font-weight: bold;
+	    }
+	    
+	    .weekOfDay{
+			color: rgb(0, 0, 0);
+			font-size: 60px;
+		}
+		
+		.dateText{
+			color: rgb(0, 0, 0);
+			font-size: 40px;
+		}
+		
+		.dayBtn{
+			font-size: 50px;
+		}
+		
+		.baBtn{
+			width: 200px;
+            height:70px;
+            font-size: 250%;
+            color: rgb(0, 0, 0);
+		}
+		
+	</style>
 </head>
 <body>
 
-	<header>
-		<h1>日程選択</h1>
+	<header class="header">
+		日程選択
 	</header>
 
 	<main>
-		<div class="cotainer">
-			<div>
-				
+		<div class="h1 row justify-content-center mb-5 mt-4 py-3 border" id="adviser">
+			<div class="col-10">
+			    アドバイザー：田中太郎
+			</div>
+	    </div>
+		
+		<div class="container-fluid">
+			<div class="year row ps-5 pb-3" id="calendar-heading">
+				カレンダー
+			</div>
+			
+			<div class="row" id="calendar-buttons">
+				<div class="col-6 mb-3" style="text-align:center">
+			    	<button class="baBtn btn btn-outline-dark" onclick="previousMonth()">＜</button>
+				</div>
+				<div class="col-6" style="text-align:center">
+			    	<button class="baBtn btn btn-outline-dark" onclick="nextMonth()">＞</button>
+				</div>
+			</div>
+			
+			<div class="row mx-4" id="calendar-container">
+			    <table id="calendar-table">
+			        <thead>
+			            <tr id="calendar-header"></tr>
+			        </thead>
+			        <form id="form" action="/selectTime" method="post">
+						<input type="hidden" name="confirmDate" id="confirmDate">
+						<tbody id="calendar-body"></tbody>
+			        </form>
+			    </table>
 			</div>
 		</div>
-		
-		<h2 id="calendar-heading">カレンダー</h2>
-
-		<div id="calendar-buttons">
-		    <button class="btn btn-outline-dark" onclick="previousMonth()">＜</button>
-		    <button class="btn btn-outline-dark" onclick="nextMonth()">＞</button>
-		</div>
-		<div id="calendar-container">
-		    <table id="calendar-table">
-		        <thead>
-		            <tr id="calendar-header"></tr>
-		        </thead>
-		        <form id="form" action="/selectTime" method="post">
-					<input type="hidden" name="confirmDate" id="confirmDate">
-					<tbody id="calendar-body"></tbody>
-		        </form>
-		    </table>
-		</div>
-		
 	</main>
 	
 	<script>
@@ -100,6 +132,7 @@
 	        days.forEach(function(day) {
 	            var th = document.createElement('th');
 	            th.textContent = day;
+	            th.setAttribute('class', 'weekOfDay');
 	            headerRow.appendChild(th);
 	        });
 	
@@ -119,6 +152,7 @@
 	
 	            // 日付をテキストとして表示
 	            var dateText = document.createElement('span');
+	            dateText.setAttribute("class", "dateText");
 	            dateText.textContent = i;
 	            dayCell.appendChild(dateText);
 
@@ -134,9 +168,9 @@
                 statusText.setAttribute('data-datekey', dateKey);
 				statusText.classList.add('status');
 				if (reservationStatus === true) {
-				    statusText.innerHTML = '<button disabled class="btn btn-outline-light btn-sm" style="color: red;">Ｘ</button>';
+				    statusText.innerHTML = '<button disabled class="dayBtn btn btn-outline-light btn-sm" style="color: red;">Ｘ</button>';
 				} else {
-				    statusText.innerHTML = '<input type="button" id="decidedDate" name="decidedDate" class="btn btn-outline-light btn-sm" style="color: green;" value="〇">';
+				    statusText.innerHTML = '<input type="button" id="decidedDate" name="decidedDate" class="dayBtn btn btn-outline-light btn-sm" style="color: black;" value="〇">';
 				    
 				}
                 dayCell.appendChild(statusText);
