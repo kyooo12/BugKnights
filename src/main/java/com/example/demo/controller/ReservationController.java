@@ -44,6 +44,8 @@ public class ReservationController {
 	@PostMapping("/selectDate")
 	public ModelAndView selectDate(@RequestParam("adviserCode") String adviserCd,
 									ModelAndView mv) {
+		Adviser adviser = adviserRepository.findById(Integer.parseInt(adviserCd)).get();
+		session.setAttribute("adviserName", adviser.getName());
 		session.setAttribute("adviserCd", adviserCd);
 		LocalDate nowDate = LocalDate.now();
 		LocalDate afterDate = nowDate.plusMonths(2);
@@ -53,6 +55,7 @@ public class ReservationController {
 		list.forEach( d -> {
 			map.put(d.getDate(), d.isMaxTime());
 		});
+		mv.addObject("adviserName", adviser.getName());
 		mv.addObject("dateMap", map);
 		mv.setViewName("selectDate");
 		return mv;
@@ -64,19 +67,11 @@ public class ReservationController {
 									ModelAndView mv) {
 		LocalDate localDate = LocalDate.parse(selectDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		session.setAttribute("selectDate", localDate);
-		String adviserCd = session.getAttribute("adviserCd").toString();
+		String adviserName = (String)session.getAttribute("adviserName");
+		String adviserCd = (String)session.getAttribute("adviserCd");
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, localDate);
-		mv.addObject("reserveList", list);
-		mv.setViewName("selectTime");
-		return mv;
-	}
-	
-	//次に日時選択に飛ぶようのテストURL
-	@GetMapping("/selectTimeTest")
-	public ModelAndView selectTime(ModelAndView mv) {
-		String adviserCd = "1";
-		LocalDate selectDate = LocalDate.of(2024, 07, 04);
-		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
+		mv.addObject("adviserName", adviserName);
+		mv.addObject("selectDate", localDate);
 		mv.addObject("reserveList", list);
 		mv.setViewName("selectTime");
 		return mv;
@@ -100,7 +95,7 @@ public class ReservationController {
 		String stringTime = (String)session.getAttribute("selectTime");
 		LocalTime time = LocalTime.parse(stringTime);	
 		String code = ConfirmationUtil.codeGenerate(10);
-		Adviser adviser = adviserRepository.findById(Integer.parseInt(adviserCd)).get();
+		String adviserName = (String)session.getAttribute("adviserName");
 		if(!result.hasErrors()) {
 			Reserve reserve = inputForm.getEntity();
 			reserve.setAdviserCd(adviserCd);
@@ -108,7 +103,7 @@ public class ReservationController {
 			reserve.setTime(time);
 			reserve.setCode(code);
 			mv.addObject("reserve", reserve);
-			mv.addObject("adviser", adviser);
+			mv.addObject("adviserName", adviserName);
 			session.setAttribute("reserve", reserve);
 			mv.setViewName("Confirmation");
 		} else {
