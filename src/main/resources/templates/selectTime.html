@@ -38,9 +38,9 @@
 		}
 		
 		.btn{
-			 width: 250px;
-             height:80px;
-             font-size: 200%;
+			 width: 300px;
+             height:100px;
+             font-size: 250%;
 		}
 	</style>
 </head>
@@ -51,21 +51,21 @@
 		時間帯選択
 	</header>
 	
-	<div class="row pb-5 justify-content-center">
-		<div class="col-10">
+	<div class="row pb-5 pt-3 justify-content-center">
+		<div class="col-11">
 			<button type="submit" id="headBtn" class="btn btn btn-primary" onclick="location.href='/selectDate'">戻る</button>
+		</div>
+	</div>
+	<div class="h1 row justify-content-center mb-5 mt-4 py-3 border" id="adviser">
+		<div class="col-10">
+		    アドバイザー：田中太郎
 		</div>
 	</div>
 
 	<div class="container">
-		<div class="row py-4">
-			<div id="adviser" class="h1">
-				アドバイザー：田中太郎
-			</div>
-		</div>
 		<form id="timeForm" action="/inputForm" method="post">
 			<input type="hidden" name="selectTime" id="selectTime">
-			<div class="time row pt-3">
+			<div class="time row pt-5">
 				<a href="#" class="timeTxt" id="time-10" style="text-decoration:none;">10:00</a>
 			</div>
 			<div class="time row my-5">
