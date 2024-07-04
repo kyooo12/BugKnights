@@ -21,6 +21,11 @@
              font-size: 40px;
 		}
 		
+		.txt{
+			font-weight: bold; 
+			font-size: 60px;
+		}
+		
 		.txtbox{
 		    display: inline-block;
 		    width: 100%;
@@ -49,7 +54,7 @@
 				<form action="reserveSearch" method="post" th:object="${inquiryForm}">
 					<div class="row justify-content-center">
 						<div class="col-10">
-							<label for="mail" style="font-weight: bold; font-size: 60px;">メールアドレス</label><br>
+							<label class="txt" for="mail">メールアドレス</label><br>
 						</div>
 					</div>
 					<div class="row justify-content-center">
@@ -60,7 +65,7 @@
 					
 					<div class="row justify-content-center">
 						<div class="col-10">
-							<label for="reference" style="font-weight: bold; font-size: 60px;">予約番号</label><br>
+							<label class="txt" for="reference">予約番号</label><br>
 						</div>
 					</div>
 					<div class="row justify-content-center">
