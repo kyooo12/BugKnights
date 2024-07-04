@@ -118,8 +118,17 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/Completion")
-	public String Completion() {
-		
-		return "Completion.html";
+	public ModelAndView Completion(ModelAndView mv) {
+		Reserve reserve = (Reserve)session.getAttribute("reserve");
+		reserveRepository.setReserve(reserve.getDate(),
+									reserve.getTime(),
+									reserve.getCode(),
+									reserve.getAdviserCd(),
+									reserve.getUserName(),
+									reserve.getUserMail(),
+									reserve.getComment());
+		mv.addObject("code", reserve.getCode());
+		mv.setViewName("Completion");
+		return mv;
 	}
 }

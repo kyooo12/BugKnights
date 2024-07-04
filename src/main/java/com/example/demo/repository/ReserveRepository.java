@@ -5,10 +5,13 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.demo.entity.Reserve;
+
+import jakarta.transaction.Transactional;
 
 public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 	//予約機能SQL
@@ -30,10 +33,11 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 										@Param("code") String code);
 	
 	//予約登録
+	@Transactional
+	@Modifying
 	@Query(value = "INSERT INTO t_reserve(reserve_date, reserve_time, reference_code, adviser_cd, user_name, user_mail, user_comment) "
-			+ "VALUES :no, :date, :time, :code, :adviserCd, :userName, :userMail, :comment", nativeQuery = true)
-	void setReserve(@Param("no") Integer no,
-					@Param("date") LocalDate date,
+			+ "VALUES (:date, :time, :code, :adviserCd, :userName, :userMail, :comment)", nativeQuery = true)
+	void setReserve(@Param("date") LocalDate date,
 					@Param("time") LocalTime time,
 					@Param("code") String code,
 					@Param("adviserCd") String adviserCd,
