@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.Model.ConfirmationUtil;
 import com.example.demo.Model.SelectDateModel;
 import com.example.demo.Model.SelectDateUtil;
+import com.example.demo.Model.SelectTimeUtil;
 import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InputForm;
@@ -37,6 +38,7 @@ public class ReservationController {
 	
 	@GetMapping("/")
 	public String index() {
+		session.invalidate();
 		return "top.html";
 	}
 	
@@ -70,9 +72,11 @@ public class ReservationController {
 		String adviserName = (String)session.getAttribute("adviserName");
 		String adviserCd = (String)session.getAttribute("adviserCd");
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, localDate);
+		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(localDate);
 		mv.addObject("adviserName", adviserName);
 		mv.addObject("selectDate", localDate);
 		mv.addObject("reserveList", list);
+		mv.addObject("nowTimeList", nowTimeList);
 		mv.setViewName("selectTime");
 		return mv;
 	}
@@ -124,6 +128,7 @@ public class ReservationController {
 									reserve.getComment());
 		mv.addObject("code", reserve.getCode());
 		mv.setViewName("Completion");
+		session.invalidate();
 		return mv;
 	}
 }

@@ -40,6 +40,7 @@ public class SelectDateUtil {
 		}
 	}
 	
+	//予約DBで時間が埋まっている日付をチェック
 	public static void checkReserve(List<Reserve> reserveList,
 									List<SelectDateModel> list,
 									LocalDate nowDate,
