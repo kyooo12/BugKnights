@@ -9,6 +9,14 @@
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 	<style>
+		.header{
+	        font-size: 70px;
+        }
+        
+        .h1{
+			font-size:60px ;
+		}
+		
 		.time {
 			background-color: white;
 			border-bottom: solid black thin;
@@ -16,6 +24,11 @@
 
 		.time:hover {
 			background-color: #ffff8e;
+		}
+		
+		.timeTxt{
+			font-size: 70px;
+			color: black;
 		}
 
 		.reserved {
@@ -25,62 +38,67 @@
 		}
 		
 		.btn{
-			 width: 200px;
-             height:50px;
-             font-size: 190%;
+			 width: 300px;
+             height:100px;
+             font-size: 250%;
 		}
 	</style>
 </head>
 
 <body>
 
-	<header>
-		<h1>時間帯選択</h1>
+	<header class="header">
+		時間帯選択
 	</header>
 	
-	<div class="row pb-5 justify-content-center">
-		<div class="col-10">
+	<div class="row pb-5 pt-3 justify-content-center">
+		<div class="col-11">
 			<button type="submit" id="headBtn" class="btn btn btn-primary" onclick="location.href='/selectDate'">戻る</button>
+		</div>
+	</div>
+	<div class="h1 row justify-content-center mb-5 mt-4 py-3 border" id="adviser">
+		<div class="col-10">
+		    アドバイザー：田中太郎
+		</div>
+	</div>
+	<div class="h1 row justify-content-center pt-5" id="adviser">
+		<div class="col-10">
+		    ○○年○○月○○日
 		</div>
 	</div>
 
 	<div class="container">
-		<div class="row">
-			<div id="adviser" class="h1">
-				アドバイザー：田中太郎
-			</div>
-		</div>
 		<form id="timeForm" action="/inputForm" method="post">
 			<input type="hidden" name="selectTime" id="selectTime">
-			<div class="time row">
-				<a href="#" class="text-black fs-2" id="time-10" style="text-decoration:none;">10:00</a>
+			<div class="time row mt-5">
+				<a href="#" class="timeTxt" id="time-10" style="text-decoration:none;">10:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-11" style="text-decoration:none;">11:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-11" style="text-decoration:none;">11:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-12" style="text-decoration:none;">12:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-12" style="text-decoration:none;">12:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-13" style="text-decoration:none;">13:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-13" style="text-decoration:none;">13:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-14" style="text-decoration:none;">14:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-14" style="text-decoration:none;">14:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-15" style="text-decoration:none;">15:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-15" style="text-decoration:none;">15:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-16" style="text-decoration:none;">16:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-16" style="text-decoration:none;">16:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-17" style="text-decoration:none;">17:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-17" style="text-decoration:none;">17:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-18" style="text-decoration:none;">18:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-18" style="text-decoration:none;">18:00</a>
 			</div>
-			<div class="time row my-3">
-				<a href="#" class="text-black fs-2" id="time-19" style="text-decoration:none;">19:00</a>
+			<div class="time row my-5">
+				<a href="#" class="timeTxt" id="time-19" style="text-decoration:none;">19:00</a>
 			</div>
 		</form>
 		

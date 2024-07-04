@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,6 @@ public class ReservationController {
 		LocalDate afterDate = nowDate.plusMonths(2);
 		List<Reserve> reserveList = reserveRepository.findAllByAdviserCdAndDate(adviserCd, nowDate, afterDate);
 		List<SelectDateModel> list = SelectDateUtil.getSelectDate(reserveList, nowDate, afterDate);
-		list.forEach( d -> System.out.println(d.getDate()));
 		Map<String, Boolean> map = new HashMap<>();
 		list.forEach( d -> {
 			map.put(d.getDate(), d.isMaxTime());
@@ -51,11 +51,14 @@ public class ReservationController {
 	
 	//カレンダーから飛んできて、次に日時選択に飛ぶ用
 	@PostMapping("/selectTime")
-	public ModelAndView selectTime(@RequestParam("decidedDate") LocalDate selectDate,
+	public ModelAndView selectTime(@RequestParam("confirmDate") String selectDate,
 									ModelAndView mv) {
-		session.setAttribute("selectDate", selectDate);
+		LocalDate localDate = LocalDate.parse(selectDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		session.setAttribute("selectDate", localDate);
 		String adviserCd = session.getAttribute("adviserCd").toString();
-		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
+		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, localDate);
+		mv.addObject("reserveList", list);
+		mv.setViewName("selectTime");
 		return mv;
 	}
 	
@@ -75,7 +78,9 @@ public class ReservationController {
 	public String userInfoForm(@RequestParam("selectTime") String selectTime,
 								ModelAndView mv) {
 		session.setAttribute("selectTime", selectTime);
-		System.out.println(selectTime);
 		return "inputForm";
 	}
+	
+//	@PostMapping("/Confitmation")
+//	public ModelAndView 
 }
