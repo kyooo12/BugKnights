@@ -60,7 +60,10 @@
 		        <thead>
 		            <tr id="calendar-header"></tr>
 		        </thead>
-		        <tbody id="calendar-body"></tbody>
+		        <form id="form" action="/selectTime" method="post">
+					<input type="hidden" name="confirmDate" id="confirmDate">
+					<tbody id="calendar-body"></tbody>
+		        </form>
 		    </table>
 		</div>
 		
@@ -124,25 +127,22 @@
 				var statusText = document.createElement('span');
                 statusText.setAttribute('data-datekey', dateKey);
 				statusText.classList.add('status');
-                var dateForm = document.createElement('form');
-                dateForm.setAttribute('action', 'dateForm');
-                dateForm.setAttribute('method', 'post');
 				if (reservationStatus === true) {
-				    statusText.innerHTML = '<button disabled class="btn btn-outline-light btn-sm" style="color: red;">Ｘ</span>';
+				    statusText.innerHTML = '<button disabled class="btn btn-outline-light btn-sm" style="color: red;">Ｘ</button>';
 				} else {
-				    statusText.innerHTML = '<button type="submit" id="decidedDate" name="decidedDate" class="btn btn-outline-light btn-sm" style="color: green;">○</span>';
+				    statusText.innerHTML = '<input type="button" id="decidedDate" name="decidedDate" class="btn btn-outline-light btn-sm" style="color: green;" value="〇">';
 				    
 				}
-                dateForm.appendChild(statusText);
-				dayCell.appendChild(dateForm);
+                dayCell.appendChild(statusText);
 
 	            // ボタンがクリックされたときの処理
 	            statusText.addEventListener('click', function() {
                     // 日付のdateKeyを保存する属性を追加
                     var selectedDate = this.getAttribute('data-datekey');
-				    document.getElementById('decidedDate').setAttribute('value', selectedDate);
+				    document.getElementById('confirmDate').setAttribute('value', selectedDate);
 	                var chooseDate = document.getElementById('decidedDate').value;
-	               	alert('選択された日は、' + chooseDate);
+	               	const form = document.getElementById('form');
+	               	form.submit();
 	                // ここに他の処理を追加する（例: 予約処理など）
 	            });
 
@@ -189,6 +189,6 @@
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+	
 </body>
 </html>
