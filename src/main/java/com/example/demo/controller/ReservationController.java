@@ -73,6 +73,7 @@ public class ReservationController {
 		String adviserCd = (String)session.getAttribute("adviserCd");
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, localDate);
 		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(localDate);
+		System.out.println("現在時間リストの大きさ：" + nowTimeList.size());
 		mv.addObject("adviserName", adviserName);
 		mv.addObject("selectDate", localDate);
 		mv.addObject("reserveList", list);
