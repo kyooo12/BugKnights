@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +75,8 @@ public class ReservationController {
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
 		LocalDate nowDate = LocalDate.now();
 		LocalTime nowTime = LocalTime.now();
-		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime);
+		List<Integer> nowTimeList = new ArrayList<>();
+		SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime, nowTimeList);
 		mv.addObject("adviserName", adviserName);
 		mv.addObject("selectDate", selectDate);
 		mv.addObject("reserveList", list);
