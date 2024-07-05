@@ -24,12 +24,15 @@
         .txtbox{
 		    display: inline-block;
 		    width: 100%;
-		    padding: 1em;
+		    padding: 1px;
 		    border: 1px solid #999;
 		    box-sizing: border-box;
 		    background: #f2f2f2;
 		    margin: 0.5em 0;
-		    font-size: 50px;
+		}
+		
+		.txtbox::-webkit-input-placeholder{
+			position: relative;
 		}
 		
 		.comment{
@@ -55,9 +58,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-					
-                    	<input class="txtbox col-10 pb-5 h1" type="text" name="userName" th:value="*{userName}">
-				
+                    	<input class="txtbox col-10 p-4 h1" type="text" name="userName" th:value="*{userName}">
                 </div>
                 
                 <div class="row mt-5 justify-content-center">
@@ -66,7 +67,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="txtbox col-10 pb-5 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}">
+                    <input class="txtbox col-10 p-4 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}">
                 </div>
                 <div class="row mt-5 justify-content-center">
                     <div class="txt col-10">
@@ -75,7 +76,8 @@
                 </div>
                 <div class="row justify-content-center">
 					<div class="col-10">
-                    	<textarea class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}"></textarea>
+                    	<textarea onkeyup="ShowLength(value);" maxlength="250" class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}"></textarea>
+                        <span id="inputlength">0文字</span>/250文字
 					</div>
                 </div>
                 <div class="row mt-5 justify-content-center">
@@ -84,7 +86,11 @@
             </div>
         </form>
     </main>
-
+    <script>
+		function ShowLength( str ) {
+   			document.getElementById("inputlength").innerHTML = str.length + "文字";
+		}
+	</script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
