@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SelectTimeUtil {
-	public static List<Integer> nowTimeJudge(LocalDate selectDate) {
+	public static List<Integer> nowTimeJudge(LocalDate selectDate,
+											LocalDate nowDate) {
 		List<Integer> nowDatelist = new ArrayList<>();
-		LocalDate nowDate = LocalDate.now();
 		System.out.println("現在の時刻" + nowDate.toString());
 		if(selectDate.compareTo(nowDate) == 0) {
 			int nowTime = LocalTime.now().getHour();

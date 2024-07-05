@@ -65,17 +65,17 @@ public class ReservationController {
 	
 	//カレンダーから飛んできて、次に時間選択に飛ぶ用
 	@PostMapping("/selectTime")
-	public ModelAndView selectTime(@RequestParam("confirmDate") String selectDate,
+	public ModelAndView selectTime(@RequestParam("confirmDate") String stringSelectDate,
 									ModelAndView mv) {
-		LocalDate localDate = LocalDate.parse(selectDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		session.setAttribute("selectDate", localDate);
+		LocalDate selectDate = LocalDate.parse(stringSelectDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		session.setAttribute("selectDate", selectDate);
 		String adviserName = (String)session.getAttribute("adviserName");
 		String adviserCd = (String)session.getAttribute("adviserCd");
-		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, localDate);
-		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(localDate);
-		System.out.println("現在時間リストの大きさ：" + nowTimeList.size());
+		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
+		LocalDate nowDate = LocalDate.now();
+		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(selectDate, nowDate);
 		mv.addObject("adviserName", adviserName);
-		mv.addObject("selectDate", localDate);
+		mv.addObject("selectDate", selectDate);
 		mv.addObject("reserveList", list);
 		mv.addObject("nowTimeList", nowTimeList);
 		mv.setViewName("selectTime");
