@@ -81,6 +81,9 @@ public class ReservationController {
 		mv.addObject("selectDate", selectDate);
 		mv.addObject("reserveList", list);
 		mv.addObject("nowTimeList", ansTimeList);
+		mv.addObject("date", nowDate);
+		mv.addObject("time", nowTime);
+		mv.addObject("timeList", nowTimeList);
 		mv.setViewName("selectTime");
 		return mv;
 	}
