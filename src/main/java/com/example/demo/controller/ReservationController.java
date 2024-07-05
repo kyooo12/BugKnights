@@ -36,6 +36,7 @@ public class ReservationController {
 	private final ReserveRepository reserveRepository;
 	private final AdviserRepository adviserRepository;
 	
+	//TOP画面遷移
 	@GetMapping("/")
 	public String index() {
 		return "top.html";
@@ -82,6 +83,7 @@ public class ReservationController {
 		return mv;
 	}
 	
+	
 	//カレンダーから飛んできて、次に時間選択に飛ぶ用
 	@PostMapping("/selectTime")
 	public ModelAndView selectTime(@RequestParam("confirmDate") String stringSelectDate,
@@ -116,11 +118,18 @@ public class ReservationController {
 		return mv;
 	}
 	
+	
 	//時間選択からお客様情報入力に飛ぶ
 	@PostMapping("/inputForm")
 	public String userInfoForm(@RequestParam("selectTime") String selectTime,
 								InputForm inputForm) {
 		session.setAttribute("selectTime", selectTime);
+		return "inputForm";
+	}
+	
+	//お客様情報入力から時間選択に戻る
+	@GetMapping("/inputForm")
+	public String userInfoForm(InputForm inputForm) {
 		return "inputForm";
 	}
 	
@@ -151,6 +160,7 @@ public class ReservationController {
 		return mv;
 	}
 	
+	//予約完了画面に飛ぶ
 	@GetMapping("/Completion")
 	public ModelAndView Completion(ModelAndView mv) {
 		Reserve reserve = (Reserve)session.getAttribute("reserve");

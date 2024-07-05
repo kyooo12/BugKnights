@@ -59,6 +59,7 @@
 				<div class="row justify-content-center">
 					<div class="col-sm-10 pb-5 h1">
 						<input class="txtbox" type="email" name="userMail" id="mail" placeholder="12345@example.com" th:value="*{userMail}">
+						<span th:if="${#fields.hasErrors('userMail')}" th:errors="*{userMail}"></span>
 					</div>
 				</div>
 				

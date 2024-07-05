@@ -21,7 +21,6 @@ public class InquiryService {
 		Reserve reserve =
 				reserveRepository.findAllByUserMailAndCode(inquiryForm.getUserMail(), inquiryForm.getCode());
 		if(Objects.isNull(reserve)) {
-			System.out.println("実行されてます！");
 			result.addError(new FieldError(
 					result.getObjectName(),
 					"code",
