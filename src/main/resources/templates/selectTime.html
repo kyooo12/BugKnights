@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>時間選択</title>
 	<link rel="stylesheet" href="./css/style.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,15 +11,23 @@
 
 	<style>
 		.header{
-	        font-size: 70px;
+	        font-size: 7vw;
         }
         
         .h1{
-			font-size:60px ;
+			font-size:5vw;
+		}
+        
+		.back{
+			 width: 23vw;
+             height:7vw;
+             margin-left: 4vw;
+             font-size: 4vw;
 		}
 		
 		.time {
 			background-color: white;
+            margin: 0 15vw;
 			border-bottom: solid black thin;
 		}
 
@@ -27,7 +36,7 @@
 		}
 		
 		.timeTxt{
-			font-size: 70px;
+			font-size: 7vw;
 			color: black;
 		}
 
@@ -36,32 +45,65 @@
 			pointer-events: none;
 			/* 選択不可にする */
 		}
+
+        @media screen and (min-width:768px) {
+            .header{
+                font-size: 3.5vw;
+            }
+            
+            .h1{
+                font-size:2.5vw;
+            }
+            
+            .back{
+                width: 10vw;
+                height:4vw;
+                margin-left: 4vw;
+                font-size: 2vw;
+            }
+            
+            .time {
+                background-color: white;
+                margin: 0 7vw;
+                border-bottom: solid black thin;
+            }
+
+            .time:hover {
+                background-color: #ffff8e;
+            }
+            
+            .timeTxt{
+                font-size: 3.5svw;
+                color: black;
+            }
+
+            .reserved {
+                background-color: rgb(208, 208, 208);
+                pointer-events: none;
+                /* 選択不可にする */
+            }
+        }
 		
-		.back{
-			 width: 300px;
-             height:100px;
-             font-size: 250%;
-		}
 	</style>
 </head>
 
 <body>
 
-	<header class="header">
-		時間帯選択
+	<header class="py-md-0 py-md-2">
+		<h1 class="header mx-2 py-2">時間帯選択</h1>
 	</header>
 	
-	<div class="row pb-5 pt-3 justify-content-center">
+	<div class="row py-2 justify-content-center">
 		<div class="col-11">
-			<a href="/selectDate" class="back btn btn-primary">戻る</a>
+			<a href="/selectDate" class="back btn btn-primary py-0">戻る</a>
 		</div>
 	</div>
-	<div class="h1 row justify-content-center mb-5 mt-4 py-3 border" id="adviser">
+	<div class="h1 row justify-content-center my-2 py-2 border" id="adviser">
 		<div class="col-10">
 		    アドバイザー：<span th:text="${adviserName}"></span>
 		</div>
 	</div>
-	<div class="h1 row justify-content-center pt-5" id="adviser">
+	<div class="h1 row justify-content-center pt-3" id="adviser">
 		<div class="col-10">
 		    <span th:text="${selectDate}"></span>
 		</div>
@@ -70,34 +112,34 @@
 	<div class="container">
 		<form id="timeForm" action="/inputForm" method="post">
 			<input type="hidden" name="selectTime" id="selectTime">
-			<div class="time row mt-5">
+			<div class="time row mt-2">
 				<a href="#" class="timeTxt" id="time-10" style="text-decoration:none;">10:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-11" style="text-decoration:none;">11:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-12" style="text-decoration:none;">12:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-13" style="text-decoration:none;">13:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-14" style="text-decoration:none;">14:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-15" style="text-decoration:none;">15:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-16" style="text-decoration:none;">16:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-17" style="text-decoration:none;">17:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-18" style="text-decoration:none;">18:00</a>
 			</div>
-			<div class="time row my-5">
+			<div class="time row my-3">
 				<a href="#" class="timeTxt" id="time-19" style="text-decoration:none;">19:00</a>
 			</div>
 		</form>
