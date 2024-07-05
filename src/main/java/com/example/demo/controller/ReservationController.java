@@ -100,6 +100,22 @@ public class ReservationController {
 		return mv;
 	}
 	
+	//お客様情報入力から時間選択に戻る
+	@GetMapping("/selectTime")
+	public ModelAndView selectTime(ModelAndView mv) {
+		LocalDate selectDate = (LocalDate)session.getAttribute("selectDate");
+		String adviserName = (String)session.getAttribute("adviserName");
+		String adviserCd = (String)session.getAttribute("adviserCd");
+		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
+		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(selectDate);
+		mv.addObject("adviserName", adviserName);
+		mv.addObject("selectDate", selectDate);
+		mv.addObject("reserveList", list);
+		mv.addObject("nowTimeList", nowTimeList);
+		mv.setViewName("selectTime");
+		return mv;
+	}
+	
 	//時間選択からお客様情報入力に飛ぶ
 	@PostMapping("/inputForm")
 	public String userInfoForm(@RequestParam("selectTime") String selectTime,
