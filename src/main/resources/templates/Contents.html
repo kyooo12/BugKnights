@@ -8,51 +8,74 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
         crossorigin="anonymous">
+    <style>
+		.header{
+	        font-size: 70px;
+        }
+        
+        .title{
+			font-size: 50px;
+		}
+		
+		.h3{
+			font-size: 40px;
+		}
+		
+		.h2{
+			font-size: 45px;
+		}
+		
+		.btn{
+			 width: 350px;
+             height:80px;
+             font-size: 40px;
+		}
+	</style>    
 </head>
 
 <body>
 
-    <header class="py-5 py-md-3">
-        <h1>予約内容</h1>
+    <header class="header">
+        予約内容
     </header>
 
     <main>
         <div class="container-fluid">
             <div class="row my-4 py-2" style="background-color: rgb(210, 210, 210);">
-                <h3>予約内容</h3>
+                <div class="title">予約内容</div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-10 my-5">
-                    <h2>日時</h2>
-                    <h3><span th:text="${reserve.date}"></span>：<span th:text="${reserve.time}"></span>～</h3>
+                    <h3 class="h3">日時</h3>
+                    <h2 class="h2 offset-1 mb-4"><span th:text="${reserve.date}"></span>：<span th:text="${reserve.time}"></span>～</h2>
                     <br>
-                    <h2>アドバイザー</h2>
-                    <h3 th:text="${adviser.name}"></h3>
+                    <h3 class="h3">アドバイザー</h3>
+                    <h2 class="h2 offset-1" th:text="${adviser.name}"></h2>
                 </div>
             </div>
             <div class="row my-4 py-2" style="background-color: rgb(210, 210, 210);">
-                <h3>ご予約者情報</h3>
+                <div class="title">ご予約者情報</div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-10 my-5">
-                    <h2>ご予約者氏名</h2>
-                    <h3 th:text="${reserve.userName}"></h3>
+                    <h3 class="h3">ご予約者氏名</h3>
+                    <h2 class="h2 offset-1 mb-5" th:text="${reserve.userName}"></h2>
                     <br>
-                    <h2>メールアドレス</h2>
-                    <h3 th:text="${reserve.userMail}"></h3>
+                    <h3 class="h3">メールアドレス</h3>
+                    <h2 class="h2 offset-1 mb-5" th:text="${reserve.userMail}"></h2>
                     <br>
-                    <h2>ご要望・ご相談</h2>
+                    <h3 class="h3">ご要望・ご相談</h3>
                     <div>
-                        <h3 th:text="${reserve.comment}"></h3>
+                        <h2 class="h2 offset-1" th:text="${reserve.comment}"></h2>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center my-5">
-                <div class="col-4">
-                    <a href="/" class="button">TOPへ戻る</a>
+                <div class="col-6 text-center">
+                    <a href="/" class="btn btn btn-primary">TOPへ戻る</a>
                 </div>
-                <div class="col-4">
-                    <button type="button" class="buttonCan" data-bs-toggle="modal" data-bs-target="#cancelModal">
+                <div class="col-6 text-center">
+                    <button type="button" class="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancelModal">
                         キャンセルする
                     </button>
                 </div>
