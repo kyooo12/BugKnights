@@ -33,7 +33,7 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 										@Param("code") String code);
 	
 	//予約照会データ削除SQL
-	@Query(value = "DELETE FROM t_reserve WHERE user_mail = :userMail AND reference_code = code", nativeQuery = true)
+	@Query(value = "DELETE FROM t_reserve WHERE user_mail = :userMail AND reference_code = :code", nativeQuery = true)
 	void deleteByUserMailAndCode(@Param("userMail") String userMail,
 					@Param("code") String code);
 	

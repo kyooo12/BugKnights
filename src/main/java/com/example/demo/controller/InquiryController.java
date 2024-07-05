@@ -55,9 +55,7 @@ public class InquiryController {
 	public String cancellationCompleted() {
 		String userMail = (String)session.getAttribute("userMail");
 		String code = (String)session.getAttribute("code");
-		System.out.println(userMail instanceof String);
-		System.out.println();
-//		reserveRepository.deleteByUserMailAndCode(userMail, code);
+		reserveRepository.deleteByUserMailAndCode(userMail, code);
 		return "cancellationCompleted";
 	}
 }
