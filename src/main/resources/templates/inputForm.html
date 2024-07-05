@@ -41,6 +41,10 @@
 			height: 400px;
 			font-size: 50px;
 		}
+		
+		.count{
+			font-size: 30px;
+		}
         
 	</style>
 </head>
@@ -75,13 +79,18 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-					<div class="col-10">
+					<div class="col-10 mb-3">
                     	<textarea onkeyup="ShowLength(value);" maxlength="250" class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}"></textarea>
-                        ( 現在の文字数：<span id="inputlength">0文字</span>/250文字 )
+                        <div class="count">( 現在の文字数：<span id="inputlength">0文字</span>/250文字 )</div>
 					</div>
                 </div>
                 <div class="row mt-5 justify-content-center">
-                    <button type="submit" class="btn btn btn-primary">予約内容を確認</button>
+					<div class="col-6 text-center">
+					    <a href="/selectTime" class="btn btn btn-primary">戻る</a>
+				    </div>
+				    <div class="col-6 text-center">
+                        <button type="submit" class="btn btn btn-primary">予約内容を確認</button>
+				    </div>
                 </div>
             </div>
         </form>
