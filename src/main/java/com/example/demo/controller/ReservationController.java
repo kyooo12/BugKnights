@@ -39,7 +39,6 @@ public class ReservationController {
 	
 	@GetMapping("/")
 	public String index() {
-		session.invalidate();
 		return "top.html";
 	}
 	
@@ -135,7 +134,6 @@ public class ReservationController {
 									reserve.getComment());
 		mv.addObject("code", reserve.getCode());
 		mv.setViewName("Completion");
-		session.invalidate();
 		return mv;
 	}
 }
