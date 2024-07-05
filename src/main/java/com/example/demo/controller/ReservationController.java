@@ -90,12 +90,14 @@ public class ReservationController {
 									ModelAndView mv) {
 		LocalDate selectDate = LocalDate.parse(stringSelectDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		session.setAttribute("selectDate", selectDate);
+		String monthAndDay = SelectTimeUtil.getMonthAndDay(selectDate);
+		session.setAttribute("monthAndDay", monthAndDay);
 		String adviserName = (String)session.getAttribute("adviserName");
 		String adviserCd = (String)session.getAttribute("adviserCd");
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
 		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(selectDate);
 		mv.addObject("adviserName", adviserName);
-		mv.addObject("selectDate", selectDate);
+		mv.addObject("monthAndDay", monthAndDay);
 		mv.addObject("reserveList", list);
 		mv.addObject("nowTimeList", nowTimeList);
 		mv.setViewName("selectTime");
@@ -108,10 +110,11 @@ public class ReservationController {
 		LocalDate selectDate = (LocalDate)session.getAttribute("selectDate");
 		String adviserName = (String)session.getAttribute("adviserName");
 		String adviserCd = (String)session.getAttribute("adviserCd");
+		String monthAndDay = (String)session.getAttribute("monthAndDay");
 		List<Reserve> list = reserveRepository.findAllByAdviserCdAndSelectDate(adviserCd, selectDate);
 		List<Integer> nowTimeList = SelectTimeUtil.nowTimeJudge(selectDate);
 		mv.addObject("adviserName", adviserName);
-		mv.addObject("selectDate", selectDate);
+		mv.addObject("monthAndDay", monthAndDay);
 		mv.addObject("reserveList", list);
 		mv.addObject("nowTimeList", nowTimeList);
 		mv.setViewName("selectTime");

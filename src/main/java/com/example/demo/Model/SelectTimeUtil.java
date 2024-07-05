@@ -19,4 +19,10 @@ public class SelectTimeUtil {
 		}
 		return nowDatelist;
 	}
+	
+	public static String getMonthAndDay(LocalDate nowDate) {
+		int month = nowDate.getMonthValue();
+		int day = nowDate.getDayOfMonth();
+		return month + "月" + day + "日";
+	}
 }
