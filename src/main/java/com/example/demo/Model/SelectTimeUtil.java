@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class SelectTimeUtil {
-	public static void nowTimeJudge(LocalDate selectDate,
+	public static List<Integer> nowTimeJudge(LocalDate selectDate,
 											LocalDate nowDate,
 											LocalTime nowTime,
 											List<Integer> nowDatelist) {
@@ -17,5 +17,6 @@ public class SelectTimeUtil {
 				}
 			}
 		}
+		return nowDatelist;
 	}
 }

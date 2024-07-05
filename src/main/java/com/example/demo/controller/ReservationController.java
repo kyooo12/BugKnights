@@ -76,11 +76,11 @@ public class ReservationController {
 		LocalDate nowDate = LocalDate.now();
 		LocalTime nowTime = LocalTime.now();
 		List<Integer> nowTimeList = new ArrayList<>();
-		SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime, nowTimeList);
+		List<Integer> ansTimeList = SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime, nowTimeList);
 		mv.addObject("adviserName", adviserName);
 		mv.addObject("selectDate", selectDate);
 		mv.addObject("reserveList", list);
-		mv.addObject("nowTimeList", nowTimeList);
+		mv.addObject("nowTimeList", ansTimeList);
 		mv.setViewName("selectTime");
 		return mv;
 	}
