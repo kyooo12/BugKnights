@@ -7,13 +7,13 @@ import java.util.List;
 
 public class SelectTimeUtil {
 	public static List<Integer> nowTimeJudge(LocalDate selectDate,
-											LocalDate nowDate) {
+											LocalDate nowDate,
+											LocalTime nowTime) {
 		List<Integer> nowDatelist = new ArrayList<>();
-		System.out.println("現在の時刻" + nowDate.toString());
 		if(selectDate.compareTo(nowDate) == 0) {
-			int nowTime = LocalTime.now().getHour();
+			int intNowTime = nowTime.getHour();
 			for(int i = 0; i < 10; i++) {
-				if((i + 10) <= (nowTime + 1)) {
+				if((i + 10) <= (intNowTime + 1)) {
 					nowDatelist.add(i + 10);
 				}
 			}
