@@ -15,11 +15,11 @@
 			font-size: 50px;
 		}
 		
-		.h2{
+		.h3{
 			font-size: 40px;
 		}
 		
-		.h3{
+		.h2{
 			font-size: 45px;
 		}
 		
@@ -44,11 +44,11 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
-					<h2 class="h2">日時</h2>
-					<h3 class="h3 offset-1 mb-4"><span th:text="${reserve.date}"></span>　<span th:text="${reserve.time}"></span>～</h3>
+					<h3 class="h3">日時</h3>
+					<h2 class="h2 offset-1 mb-4"><span th:text="${reserve.date}"></span>　<span th:text="${reserve.time}"></span>～</h2>
 					<br>
-					<h2 class="h2">アドバイザー</h2>
-					<h3 class="h3 offset-1" th:text="${adviserName}"></h3>
+					<h3 class="h3">アドバイザー</h3>
+					<h2 class="h2 offset-1" th:text="${adviserName}"></h2>
 				</div>
 			</div>
 			<div class="row my-4 py-2" style="background-color: rgb(210, 210, 210);">
@@ -56,13 +56,13 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-10  my-5">
-					<h2 class="h2">ご予約者氏名</h2>
-					<h3 class="h3 offset-1 mb-5" th:text="${reserve.userName}"></h3>
-					<h2 class="h2">メールアドレス</h2>
-					<h3 class="h3 offset-1 mb-5" th:text="${reserve.userMail}"></h3>
+					<h3 class="h3">ご予約者氏名</h3>
+					<h2 class="h2 offset-1 mb-5" th:text="${reserve.userName}"></h2>
+					<h3 class="h3">メールアドレス</h3>
+					<h2 class="h2 offset-1 mb-5" th:text="${reserve.userMail}"></h2>
 					<br>
-					<h2 class="h2">ご要望・ご相談</h2>
-					<div class="h3 offset-1" th:text="${reserve.comment}">
+					<h3 class="h3">ご要望・ご相談</h3>
+					<div class="h2 offset-1" th:text="${reserve.comment}">
 			    		ここにコメントが入る。
 					</div>
 				</div>
