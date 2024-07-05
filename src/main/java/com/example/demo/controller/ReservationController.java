@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.Model.ConfirmationUtil;
 import com.example.demo.Model.SelectDateModel;
 import com.example.demo.Model.SelectDateUtil;
-import com.example.demo.Model.SelectTimeUtil;
 import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InputForm;
@@ -75,14 +74,22 @@ public class ReservationController {
 		LocalDate nowDate = LocalDate.now();
 		LocalTime nowTime = LocalTime.now();
 		List<Integer> nowTimeList = new ArrayList<>();
-		List<Integer> ansTimeList = SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime, nowTimeList);
+		if(selectDate.compareTo(nowDate) == 0) {
+			int intNowTime = nowTime.getHour();
+			for(int i = 0; i < 10; i++) {
+				if((i + 10) <= (intNowTime + 1)) {
+					nowTimeList.add(i + 10);
+				}
+			}
+		}
+//		List<Integer> ansTimeList = SelectTimeUtil.nowTimeJudge(selectDate, nowDate, nowTime, nowTimeList);
 		mv.addObject("adviserName", adviserName);
 		mv.addObject("selectDate", selectDate);
 		mv.addObject("reserveList", list);
-		mv.addObject("nowTimeList", ansTimeList);
+		mv.addObject("nowTimeList", nowTimeList);
 		mv.addObject("date", nowDate);
 		mv.addObject("time", nowTime);
-		mv.addObject("timeList", nowTimeList);
+		mv.addObject("sDate", selectDate);
 		mv.setViewName("selectTime");
 		return mv;
 	}
