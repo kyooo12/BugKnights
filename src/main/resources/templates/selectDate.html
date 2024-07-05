@@ -12,7 +12,7 @@
         }
 		
 		.h1{
-			font-size:6vw;
+			font-size:4vw;
 		}
 		
 		.year{
@@ -73,6 +73,12 @@
 			font-size: 4vw;
 		}
 		
+		.back{
+			 width: 20vw;
+             height:7vw;
+             font-size: 100%;
+		}
+		
         @media screen and (min-width:768px) {
             .header{
 	            font-size: 35px;
@@ -97,6 +103,9 @@
                 border-collapse: collapse;
                 width: 100%;
                 background-color: rgb(229, 229, 229);
+                table-layout: fixed;
+	            word-break: break-all;
+	            word-wrap: break-all;
             }
             th, td {
                 padding: 10px;
@@ -135,26 +144,32 @@
             .text{
                 font-size: 20px;
             }
+            
+            .back{
+			 	width: 10vw;
+             	height:3.5vw;
+            	 font-size: 100%;
+			}
         }
 		
 	</style>
 </head>
 <body>
 
-	<header class="py-md-0 py-md-2">
+	<header class="py-md-2">
 		<h1 class="header py-2 py-1">日程選択</h1>
 	</header>
 
 	<main>
 		
-		<div class="row pb-5 pt-3 justify-content-center">
-		    <div class="col-11">
-			    <button type="submit" id="headBtn" class="back btn btn-primary" onclick="location.href='/'">戻る</button>
+		<div class="row py-1 justify-content-start">
+		    <div class="offset-1 col-3">
+			    <button type="submit" id="headBtn" class="back py-0 btn btn-primary" onclick="location.href='/'">戻る</button>
 		    </div>
 	    </div>
 		
-		<div class="h1 row justify-content-center my-1 py-2 border-bottom" id="adviser">
-			<div class="col-10">
+		<div class="h1 row justify-content-start my-1 py-2 border-bottom" id="adviser">
+			<div class="offset-1 offset-md-3 col-6">
 			    アドバイザー：<span th:text="${adviserName}"></span>
 			</div>
 	    </div>
@@ -184,12 +199,13 @@
                             <tbody id="calendar-body"></tbody>
                         </form>
                     </table>
+                    <div class="text row mx-1">
+						〇：予約可能<br>
+						Ｘ：予約不可
+					</div>
                 </div>
 			</div>
-			<div class="text row mx-5">
-					〇：予約可能<br>
-					Ｘ：予約不可
-			</div>
+			
 		</div>
 	</main>
 	
