@@ -12,15 +12,19 @@ import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InquiryForm;
 import com.example.demo.repository.AdviserRepository;
+import com.example.demo.repository.ReserveRepository;
 import com.example.demo.service.InquiryService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Controller
 public class InquiryController {
 	private final AdviserRepository adviserRepository;
+	private final ReserveRepository reserveRepository;
 	private final InquiryService inquiryService;
+	private final HttpSession session;
 	
 	@GetMapping("/inquiryForm")
 	public String showForm(InquiryForm inquiryForm) {
@@ -38,10 +42,22 @@ public class InquiryController {
 				adviserRepository.findById(Integer.parseInt(reserve.getAdviserCd())).get();				
 			mv.addObject("reserve", reserve);
 			mv.addObject("adviser", adviser);
+			session.setAttribute("userMail", reserve.getUserMail());
+			session.setAttribute("code", reserve.getCode());
 			mv.setViewName("Contents");
 		} else {
 			mv.setViewName("inquiryForm");
 		}
 		return mv;
+	}
+	
+	@GetMapping("/cancellationCompleted")
+	public String cancellationCompleted() {
+		String userMail = (String)session.getAttribute("userMail");
+		String code = (String)session.getAttribute("code");
+		System.out.println(userMail instanceof String);
+		System.out.println();
+//		reserveRepository.deleteByUserMailAndCode(userMail, code);
+		return "cancellationCompleted";
 	}
 }
