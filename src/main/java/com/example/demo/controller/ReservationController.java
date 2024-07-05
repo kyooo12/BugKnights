@@ -62,6 +62,26 @@ public class ReservationController {
 		return mv;
 	}
 	
+	//時間選択から日付選択に戻る
+	@GetMapping("/selectDate")
+	public ModelAndView backDate(ModelAndView mv) {
+		String adviserCd = (String)session.getAttribute("adviserCd");
+		Adviser adviser = adviserRepository.findById(Integer.parseInt(adviserCd)).get();
+		session.setAttribute("adviserName", adviser.getName());
+		LocalDate nowDate = LocalDate.now();
+		LocalDate afterDate = nowDate.plusMonths(2);
+		List<Reserve> reserveList = reserveRepository.findAllByAdviserCdAndDate(adviserCd, nowDate, afterDate);
+		List<SelectDateModel> list = SelectDateUtil.getSelectDate(reserveList, nowDate, afterDate);
+		Map<String, Boolean> map = new HashMap<>();
+		list.forEach( d -> {
+		map.put(d.getDate(), d.isMaxTime());
+		});
+		mv.addObject("adviserName", adviser.getName());
+		mv.addObject("dateMap", map);
+		mv.setViewName("selectDate");
+		return mv;
+	}
+	
 	//カレンダーから飛んできて、次に時間選択に飛ぶ用
 	@PostMapping("/selectTime")
 	public ModelAndView selectTime(@RequestParam("confirmDate") String stringSelectDate,
