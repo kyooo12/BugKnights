@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    	<input class="txtbox col-10 p-4 h1" type="text" name="userName" th:value="*{userName}">
+                    	<input class="txtbox col-10 p-4 h1" type="text" name="userName" th:value="*{userName}" maxlength="30">
                 		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
                 </div>
                 
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="txtbox col-10 p-4 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}">
+                    <input class="txtbox col-10 p-4 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}" maxlength="254">
                     <span th:if="${#fields.hasErrors('userMail')}" th:errors="*{userMail}"></span>
                 </div>
                 <div class="row mt-5 justify-content-center">
