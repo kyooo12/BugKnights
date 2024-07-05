@@ -32,9 +32,10 @@ public class InquiryController {
 								BindingResult result,
 								ModelAndView mv) {
 		Reserve reserve = inquiryService.getInquaryData(inquiryForm, result);
+		System.out.println(reserve.getNo());
 		if(!result.hasErrors()) {
 			Adviser adviser = 
-				adviserRepository.findById(reserve.getNo()).get();				
+				adviserRepository.findById(Integer.parseInt(reserve.getAdviserCd())).get();				
 			mv.addObject("reserve", reserve);
 			mv.addObject("adviser", adviser);
 			mv.setViewName("Contents");
