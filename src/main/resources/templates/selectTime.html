@@ -47,15 +47,15 @@
 
         @media screen and (min-width:768px) {
             .header{
-                font-size: 3.5vw;
+                font-size: 2.5vw;
             }
             
             .h1{
-                font-size:2.5vw;
+                font-size:2vw;
             }
             
             .back{
-			 	width: 15vw;
+			 	width: 10vw;
              	height:3vw;
             	 font-size: 1.5vw;
 			}
@@ -71,7 +71,7 @@
             }
             
             .timeTxt{
-                font-size: 3.5svw;
+                font-size: 2svw;
                 color: black;
             }
 
@@ -86,54 +86,55 @@
 </head>
 
 <body>
-
 	<header class="py-md-0 py-md-2">
 		<h1 class="header mx-2 py-2">時間帯選択</h1>
 	</header>
 	
 	<div class="h1 row justify-content-center my-2 py-2 border" id="adviser">
-		<div class="col-10">
+		<div class="offset-md-2 col-10">
 		    アドバイザー：<span th:text="${adviserName}"></span>
 		</div>
 	</div>
-	<div class="h1 row justify-content-center pt-3" id="adviser">
-		<div class="col-10">
+	<div class="h1 row justify-content-center py-3" id="adviser">
+		<div class="offset-md-2 col-10">
 		    <span th:text="${monthAndDay}"></span>
 		</div>
 	</div>
 
 	<div class="container">
-		<form id="timeForm" action="/inputForm" method="post">
-			<input type="hidden" name="selectTime" id="selectTime">
-			<div class="time row mt-2">
-				<a href="#" class="timeTxt" id="time-10" style="text-decoration:none;">10:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-11" style="text-decoration:none;">11:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-12" style="text-decoration:none;">12:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-13" style="text-decoration:none;">13:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-14" style="text-decoration:none;">14:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-15" style="text-decoration:none;">15:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-16" style="text-decoration:none;">16:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-17" style="text-decoration:none;">17:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-18" style="text-decoration:none;">18:00</a>
-			</div>
-			<div class="time row my-3">
-				<a href="#" class="timeTxt" id="time-19" style="text-decoration:none;">19:00</a>
+		<div class="col mx-md-5">
+			<form id="timeForm" action="/inputForm" method="post">
+				<input type="hidden" name="selectTime" id="selectTime">
+				<div class="time row mt-2">
+					<a href="#" class="timeTxt" id="time-10" style="text-decoration:none;">10:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-11" style="text-decoration:none;">11:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-12" style="text-decoration:none;">12:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-13" style="text-decoration:none;">13:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-14" style="text-decoration:none;">14:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-15" style="text-decoration:none;">15:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-16" style="text-decoration:none;">16:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-17" style="text-decoration:none;">17:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-18" style="text-decoration:none;">18:00</a>
+				</div>
+				<div class="time row my-3">
+					<a href="#" class="timeTxt" id="time-19" style="text-decoration:none;">19:00</a>
+				</div>
 			</div>
 		</form>
 		<div class="row py-2 justify-content-center">
