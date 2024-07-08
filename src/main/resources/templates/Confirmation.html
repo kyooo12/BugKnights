@@ -3,30 +3,55 @@
 	
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>予約確認</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
 		.header{
-	        font-size: 70px;
+	        font-size: 7vw;
         }
         
         .title{
-			font-size: 50px;
+			font-size: 5vw;
 		}
 		
 		.h3{
-			font-size: 40px;
+			font-size: 4vw;
 		}
 		
 		.h2{
-			font-size: 45px;
+			font-size: 4.5vw;
 		}
 		
 		.btn{
-			 width: 350px;
-             height:80px;
-             font-size: 40px;
+			 width: 30vw;
+             height:8vw;
+             font-size: 3vw;
+		}
+		
+		@media screen and (min-width:768px){
+			.header{
+	        	font-size: 3.5vw;
+	        }
+	        
+	        .title{
+				font-size: 2vw;
+			}
+			
+			.h3{
+				font-size: 1.5vw;
+			}
+			
+			.h2{
+				font-size: 1.5vw;
+			}
+			
+			.btn{
+				 width: 12vw;
+	             height:3vw;
+	             font-size: 1vw;
+			}
 		}
 	</style>
 </head>
@@ -43,9 +68,9 @@
 			    <div class="title">予約内容</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-10  my-5">
+				<div class="col-sm-10 col-md-3 my-2">
 					<h3 class="h3">日時</h3>
-					<h2 class="h2 offset-1 mb-4"><span th:text="${monthAndDay}"></span>　<span th:text="${reserve.time}"></span>～</h2>
+					<h2 class="h2 offset-1 mb-2"><span th:text="${monthAndDay}"></span>　<span th:text="${reserve.time}"></span>～</h2>
 					<br>
 					<h3 class="h3">アドバイザー</h3>
 					<h2 class="h2 offset-1" th:text="${adviserName}"></h2>
@@ -55,11 +80,12 @@
 				<div class="title">ご予約者情報</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-10  my-5">
+				<div class="col-sm-10 col-md-3 my-2">
 					<h3 class="h3">ご予約者氏名</h3>
-					<h2 class="h2 offset-1 mb-5" th:text="${reserve.userName}"></h2>
+					<h2 class="h2 offset-1 mb-2" th:text="${reserve.userName}"></h2>
+					<br>
 					<h3 class="h3">メールアドレス</h3>
-					<h2 class="h2 offset-1 mb-5" th:text="${reserve.userMail}"></h2>
+					<h2 class="h2 offset-1 mb-2" th:text="${reserve.userMail}"></h2>
 					<br>
 					<h3 class="h3">ご要望・ご相談</h3>
 					<div class="h2 offset-1" th:text="${reserve.comment}">
@@ -68,10 +94,10 @@
 				</div>
 			</div>
 			<div class="row justify-content-center my-5">
-				<div class="col-6 text-center">
+				<div class="col-sm-6 col-md-3 text-center">
 					<a href="/inputForm" class="btn btn btn-primary">戻る</a>
 				</div>
-				<div class="col-6 text-center">
+				<div class="col-sm-6 col-md-3 text-center">
 					<a href="/Completion" class="btn btn btn-primary">予約完了</a>
 				</div>
 			</div>
