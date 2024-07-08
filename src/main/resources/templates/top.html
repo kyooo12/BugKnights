@@ -36,7 +36,7 @@
         	}
 
 			.header2{
-	        	font-size: 1.5vw;
+	        font-size: 1.5vw;
 			}
 
 			.btnTop	{
@@ -61,13 +61,13 @@
 	<header class="py-md-0 py-md-2">
 		<div class="container-fluid">
 			<div class="row">
-				<h1 class="header">相談予約</h1>
+				<h1 class="header">予約TOP</h1>
 			</div>
 			<div class="row">
 				<div class="col-7">
 					<h3 class="header2">営業時間:10:00 ～ 20:00</h3>
 				</div>
-				<div class="col-5 text-end">
+				<div class="col-5 text-end pb-1">
 					<button type="submit" id="headBtn" class="btnTop btn btn-outline-light" onclick="location.href='/inquiryForm'">予約照会・キャンセル</button>
 				</div>
 			</div>
@@ -76,47 +76,50 @@
 
 	<main>
 		<div class="container-fluid">
-			<div class="row justify-content-start">
-				<div class="txt offset-1 col-10">
-					日常で困っていることはありませんか？そのお悩みを5人のアドバイザーが解決します！
-					このサイトでは不動産・おうちの修繕、介護・終活、相続、車・保険、金融のアドバイザーの相談予約ができます。
+			<div class="row mx-md-5 justify-content-start">
+				<div class="txt offset-md-2 col-10">
+					不動産やおうちの修繕、介護や終活、相続、車や保険、金融などの専門家がお悩みに答えます！
 				</div>
 			</div>
-			<div class="row justify-content-start my-3 border-top">
-				<div class="title col mt-3">
+			<div class="row justify-content-start mx-md-5 my-3">
+				<div class="title offset-md-2 col-md-8 border-top">
 					アドバイザー紹介
 				</div>
 			</div>
 			<!--1人目-->
-			<div class="row py-3 border-bottom">
+			<div class="row mx-md-5 py-2 justify-content-center">
 				<div class="col-md-4 text-center">	
 					<img src="images/田中太郎.jfif" class="img-thumbnail img-fluid" style="max-width: 80%;  height: auto;">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<div class="title row h1 mt-2 justify-content-center">
 						<div class="col-10">
 							田中太郎
 						</div>
 					</div>
 					<div class="row justify-content-center fs-4">
+
 						<div class="txt col-12 py-0 px-5">
 							30年以上の不動産業界経験を持つベテラン。土地や住宅の売買、賃貸、管理の専門知識が豊富で、特に住宅ローンや資産運用のアドバイスに定評がある。顧客のニーズに合わせた最適な不動産戦略を提案し、多くの顧客から信頼を得ている。
 						</div>
 					</div>
+					<div  class="row text-center pt-2 pt-md-5">
+						<form action="/selectDate" method="post">
+							<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">田中太郎さんで予約</button>
+						</form>
+					</div>
 				</div>
-				<div  class="row text-center py-2">
-					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="1" class="btnTop btn btn-primary">田中太郎さんで予約</button>
-					</form>
+				<div class="row mx-md-5 pt-3 justify-content-center">
+					<div class="col-md-8 border-bottom"></div>
 				</div>
 			</div>
 			<br>
 			<!--2人目-->
-			<div class="row py-3 border-bottom">
+			<div class="row mx-md-5 py-2 justify-content-center">
 				<div class="col-md-4 text-center">	
 					<img src="images/佐藤花子.jfif" class="img-thumbnail img-fluid" style="max-width: 80%;  height: auto;">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<div class="title row h1 mt-2 justify-content-center">
 						<div class="col-10">
 							佐藤花子
@@ -127,20 +130,23 @@
 							建築士資格を持ち、20年以上のリフォーム業界経験がある。住宅の修繕やリフォームの設計から施工までを一貫してサポート。省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに詳しい。細部にまでこだわる丁寧な仕事が評判。
 						</div>
 					</div>
+					<div  class="row text-center pt-2 pt-md-5">
+						<form action="/selectDate" method="post">
+							<button type="submit" name="adviserCode" value="2" class="btnTop btn btn-primary">佐藤花子さんで予約</button>
+						</form>
+					</div>
 				</div>
-				<div  class="row text-center py-2">
-					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="2" class="btnTop btn btn-primary">佐藤花子さんで予約</button>
-					</form>
+				<div class="row mx-md-5 pt-3 justify-content-center">
+					<div class="col-md-8 border-bottom"></div>
 				</div>
 			</div>
 			<br>
 			<!--3人目-->
-			<div class="row py-3 border-bottom">
+			<div class="row mx-md-5 py-3 justify-content-center">
 				<div class="col-md-4 text-center">	
 					<img src="images/鈴木一郎.jfif" class="img-thumbnail img-fluid" style="max-width: 80%;  height: auto;">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<div class="title row h1 mt-2 justify-content-center">
 						<div class="col-10">
 							鈴木一郎
@@ -151,20 +157,23 @@
 							介護福祉士として25年のキャリアを持つ。高齢者ケアや施設運営の専門知識が豊富で、認知症ケアや在宅介護の支援に力を入れている。利用者とその家族に寄り添ったサポートを提供し、多くの実績を持つ。常に新しい介護技術の習得に努めている。
 						</div>
 					</div>
+					<div  class="row text-center pt-2 pt-md-5">
+						<form action="/selectDate" method="post">
+							<button type="submit" name="adviserCode" value="3" class="btnTop btn btn-primary">鈴木一郎さんで予約</button>
+						</form>
+					</div>
 				</div>
-				<div  class="row text-center py-2">
-					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="3" class="btnTop btn btn-primary">鈴木一郎さんで予約</button>
-					</form>
+				<div class="row mx-md-5 pt-3 justify-content-center">
+					<div class="col-md-8 border-bottom"></div>
 				</div>
 			</div>
 			<br>
 			<!--4人目-->
-			<div class="row py-3 border-bottom">
+			<div class="row mx-md-5 py-3 justify-content-center">
 				<div class="col-md-4 text-center">	
 					<img src="images/高橋美咲.jfif" class="img-thumbnail img-fluid" style="max-width: 80%;  height: auto;">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<div class="title row h1 mt-2 justify-content-center">
 						<div class="col-10">
 							高橋美咲
@@ -175,20 +184,23 @@
 							ファイナンシャルプランナー資格を持ち、15年以上の経験を誇る。終活や相続に関する法的・財務的なアドバイスが専門。遺言書作成や相続税対策、財産分割の相談に応じ、クライアントの意思を尊重したプランを提案。安心して終活を進められるようサポート。
 						</div>
 					</div>
+					<div  class="row text-center pt-2 pt-md-4">
+						<form action="/selectDate" method="post">
+							<button type="submit" name="adviserCode" value="4" class="btnTop btn btn-primary">高橋美咲さんで予約</button>
+						</form>
+					</div>
 				</div>
-				<div  class="row text-center py-2">
-					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="4" class="btnTop btn btn-primary">高橋美咲さんで予約</button>
-					</form>
+				<div class="row mx-md-5 pt-3 justify-content-center">
+					<div class="col-md-8 border-bottom"></div>
 				</div>
 			</div>
 			<br>
 			<!--5人目-->
-			<div class="row py-3 border-bottom">
+			<div class="row mx-md-5 py-3 justify-content-center">
 				<div class="col-md-4 text-center">	
 					<img src="images/中村健太.jfif" class="img-thumbnail img-fluid" style="max-width: 80%;  height: auto;">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<div class="title row h1 mt-2 justify-content-center">
 						<div class="col-10">
 							中村健太
@@ -199,11 +211,11 @@
 							保険業界で20年以上の経験を持ち、特に自動車保険や生命保険の分野に精通。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供。金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っている。
 						</div>
 					</div>
-				</div>
-				<div  class="row text-center py-2">
-					<form action="/selectDate" method="post">
-						<button type="submit" name="adviserCode" value="5" class="btnTop btn btn-primary">中村健太さんで予約</button>
-					</form>
+					<div  class="row text-center pt-2 pt-md-4">
+						<form action="/selectDate" method="post">
+							<button type="submit" name="adviserCode" value="5" class="btnTop btn btn-primary">中村健太さんで予約</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			<br>
