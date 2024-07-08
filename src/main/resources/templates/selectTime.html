@@ -19,10 +19,9 @@
 		}
         
 		.back{
-			 width: 23vw;
-             height:7vw;
-             margin-left: 4vw;
-             font-size: 4vw;
+			 width: 30vw;
+             height:10vw;
+             font-size: 5vw;
 		}
 		
 		.time {
@@ -56,11 +55,10 @@
             }
             
             .back{
-                width: 10vw;
-                height:4vw;
-                margin-left: 4vw;
-                font-size: 2vw;
-            }
+			 	width: 15vw;
+             	height:3vw;
+            	 font-size: 1.5vw;
+			}
             
             .time {
                 background-color: white;
@@ -93,11 +91,6 @@
 		<h1 class="header mx-2 py-2">時間帯選択</h1>
 	</header>
 	
-	<div class="row py-2 justify-content-center">
-		<div class="col-11">
-			<a href="/selectDate" class="back btn btn-primary py-0">戻る</a>
-		</div>
-	</div>
 	<div class="h1 row justify-content-center my-2 py-2 border" id="adviser">
 		<div class="col-10">
 		    アドバイザー：<span th:text="${adviserName}"></span>
@@ -143,6 +136,11 @@
 				<a href="#" class="timeTxt" id="time-19" style="text-decoration:none;">19:00</a>
 			</div>
 		</form>
+		<div class="row py-2 justify-content-center">
+			<div class="col-11">
+				<a href="/selectDate" class="back btn btn-primary py-0">戻る</a>
+			</div>
+	</div>
 		
 	</div>
 
