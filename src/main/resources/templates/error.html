@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>エラーページ</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+	<style>
+		.header{
+	        font-size: 8vw;
+        }
+
+        .header2{
+	        font-size: 4vw;
+        }
+
+		.btnTop	{
+			 width: 35vw;
+             height:8vw;
+             font-size: 3vw;
+		}
+
+		.txt{
+			font-size:4vw;
+		}
+        
+        .title{
+			font-size: 4vw;
+		}
+		.errorTitle{
+			font-size: 14vw;
+		}
+		.potta-one-regular {
+		  font-family: "Potta One", system-ui;
+		  font-weight: 400;
+		  font-style: normal;
+		}
+
+        
+        @media screen and (min-width:768px) {
+			.header{
+	        	font-size: 2.5vw;
+        	}
+
+			.header2{
+	        	font-size: 1.5vw;
+			}
+
+			.btnTop	{
+				width: 12vw;
+				height:3vw;
+				font-size: 1vw;
+			}
+
+			.txt{
+				font-size:1.5vw;
+			}
+			
+			.title{
+				font-size: 1.5vw;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header class="py-md-0 py-md-2">
+		<div class="container-fluid py-md-2">
+			<div class="row">
+				<h1 class="header">エラー</h1>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="container-fluid">
+			<div class="row pb-4">
+				<div class="col-6">
+					<img src="images/bug.jpg" class="img-fluid bugImg">
+				</div>
+				<div class="col-6 d-flex align-items-center justify-content-center">
+					<h1 class="potta-one-regular errorTitle">エラー<br>発生！</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="offset-1 col-10">
+					<div class="row txt pb-4">
+						申し訳ありません。アクセスされたページは見つかりませんでした。<br>
+						入力したアドレスが間違っているか、ページが移動、もしくは排除されているかもしれません。
+					</div>
+					<div class="d-flex align-items-center justify-content-center">
+						<a href="/" class="btn btn-primary">予約トップページへ</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+	</script>
+</body>
+
+</html>
