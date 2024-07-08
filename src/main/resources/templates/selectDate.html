@@ -74,9 +74,9 @@
 		}
 		
 		.back{
-			 width: 20vw;
-             height:7vw;
-             font-size: 100%;
+			 width: 30vw;
+             height:10vw;
+             font-size: 5vw;
 		}
 		
         @media screen and (min-width:768px) {
@@ -146,9 +146,9 @@
             }
             
             .back{
-			 	width: 10vw;
-             	height:3.5vw;
-            	 font-size: 100%;
+			 	width: 15vw;
+             	height:3vw;
+            	 font-size: 1.5vw;
 			}
         }
 		
@@ -162,19 +162,13 @@
 
 	<main>
 		
-		<div class="row py-1 justify-content-start">
-		    <div class="offset-1 col-3">
-			    <button type="submit" id="headBtn" class="back py-0 btn btn-primary" onclick="location.href='/'">戻る</button>
-		    </div>
-	    </div>
-		
 		<div class="h1 row justify-content-start my-1 py-2 border-bottom" id="adviser">
 			<div class="offset-1 offset-md-3 col-6">
 			    アドバイザー：<span th:text="${adviserName}"></span>
 			</div>
 	    </div>
 		
-		<div class="container-fluid pb-5">
+		<div class="container-fluid pb-3">
 			
 			<div class="row" id="calendar-buttons">
 				<div class="offset-1 offset-md-2 col-3 col-md-3 pt-2" style="text-align:center">
@@ -204,9 +198,13 @@
 						Ｘ：予約不可
 					</div>
                 </div>
-			</div>
-			
+			</div>	
 		</div>
+		<div class="row pb-5 justify-content-start">
+		    <div class="offset-1 col-3">
+			    <button type="submit" id="headBtn" class="back py-0 btn btn-primary" onclick="location.href='/'">戻る</button>
+		    </div>
+	    </div>
 	</main>
 	
 	<script th:inline="javascript">
