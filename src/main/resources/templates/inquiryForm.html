@@ -47,7 +47,7 @@
 	        }
 			
 			.inquirytxt{
-				font-size: 2vw;
+				font-size: 1.5vw;
 			}
 			
 			.h1{
@@ -55,19 +55,19 @@
 		    }
 			
 			.btn{
-				 width: 15vw;
-	             height:3vw;
-	             font-size: 1.5vw;
-			}
+                width: 12vw;
+                height:3vw;
+                font-size: 1vw;
+            }
 			
 			.txt{
 				font-weight: bold; 
-				font-size: 2.5vw;
+				font-size: 1.5vw;
 			}
 			
 			.txtbox{
 			    display: inline-block;
-			    width: 50%;
+			    width: 40%;
 			    padding: 0vw;
 			    border: 1px solid #999;
 			    box-sizing: border-box;
@@ -87,7 +87,7 @@
 	<main>
 		<div class="container-fluid">
 			<div class="row py-4 justify-content-center">
-				<div class="inquirytxt col-10">メールアドレスと予約番号を入力してください。</div>
+				<div class="inquirytxt col-10 col-md-6 pb-md-3">メールアドレスと予約番号を入力してください。</div>
 			</div>
 			
 			<form action="reserveSearch" method="post" th:object="${inquiryForm}">
@@ -115,10 +115,10 @@
 					</div>
 				</div>
 				<div class="row pt-4 justify-content-center">
-					<div class="col-6 text-center">
+					<div class="col-6 text-center col-md-2">
 			    		<a href="/" id="headBtn" class="btn btn btn-primary">戻る</a>
 		    		</div>
-		    		<div class="col-6 text-center">
+		    		<div class="col-6 text-center col-md-2">
 						<button type="submit" class="btn btn btn-primary">次へ</button>
 					</div>
 				</div>
