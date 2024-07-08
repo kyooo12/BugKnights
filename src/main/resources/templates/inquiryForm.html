@@ -114,8 +114,13 @@
 						<span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
 					</div>
 				</div>
-				<div class="row pt-3 justify-content-center">
-					<button type="submit" class="btn col-sm-2 btn btn-primary mt-1">次へ</button>
+				<div class="row pt-4 justify-content-center">
+					<div class="col-6 text-center">
+			    		<a href="/" id="headBtn" class="btn btn btn-primary">戻る</a>
+		    		</div>
+		    		<div class="col-6 text-center">
+						<button type="submit" class="btn btn btn-primary">次へ</button>
+					</div>
 				</div>
 			</form>
 		</div>
