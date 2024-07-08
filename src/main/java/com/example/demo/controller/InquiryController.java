@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.Model.SelectTimeUtil;
 import com.example.demo.entity.Adviser;
 import com.example.demo.entity.Reserve;
 import com.example.demo.form.InquiryForm;
@@ -38,9 +39,11 @@ public class InquiryController {
 		Reserve reserve = inquiryService.getInquaryData(inquiryForm, result);
 		if(!result.hasErrors()) {
 			Adviser adviser = 
-				adviserRepository.findById(Integer.parseInt(reserve.getAdviserCd())).get();				
+				adviserRepository.findById(Integer.parseInt(reserve.getAdviserCd())).get();	
+			String monthAndDay = SelectTimeUtil.getMonthAndDay(reserve.getDate());
 			mv.addObject("reserve", reserve);
 			mv.addObject("adviser", adviser);
+			mv.addObject("monthAndDay", monthAndDay);
 			session.setAttribute("userMail", reserve.getUserMail());
 			session.setAttribute("code", reserve.getCode());
 			mv.setViewName("Contents");
