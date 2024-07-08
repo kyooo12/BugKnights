@@ -153,8 +153,10 @@ public class ReservationController {
 			reserve.setDate(date);
 			reserve.setTime(time);
 			reserve.setCode(code);
+			String monthAndDay = (String)session.getAttribute("monthAndDay");
 			mv.addObject("reserve", reserve);
 			mv.addObject("adviserName", adviserName);
+			mv.addObject("monthAndDay", monthAndDay);
 			session.setAttribute("reserve", reserve);
 			mv.setViewName("Confirmation");
 		} else {
