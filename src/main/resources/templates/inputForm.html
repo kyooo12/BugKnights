@@ -107,7 +107,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-8 offset-md-4">
-                    	<input class="txtbox" type="text" name="userName" th:value="*{userName}" maxlength="30">
+                    	<input class="txtbox" type="text" name="userName" th:value="*{userName}" maxlength="30"><br>
                 		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-10 col-md-8 offset-md-4">
-                        <input class="txtbox" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}" maxlength="254">
+                        <input class="txtbox" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}" maxlength="254"><br>
                         <span th:if="${#fields.hasErrors('userMail')}" th:errors="*{userMail}"></span>
                     </div>
                 </div>
