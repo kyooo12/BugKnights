@@ -16,23 +16,10 @@
 	        font-size: 8vw;
         }
 
-        .header2{
-	        font-size: 4vw;
-        }
-
-		.btnTop	{
-			 width: 35vw;
-             height:8vw;
-             font-size: 3vw;
-		}
-
 		.txt{
 			font-size:4vw;
 		}
         
-        .title{
-			font-size: 4vw;
-		}
 		.errorTitle{
 			font-size: 14vw;
 		}
@@ -48,23 +35,19 @@
 	        	font-size: 2.5vw;
         	}
 
-			.header2{
-	        	font-size: 1.5vw;
-			}
-
-			.btnTop	{
-				width: 12vw;
-				height:3vw;
-				font-size: 1vw;
-			}
-
 			.txt{
 				font-size:1.5vw;
 			}
 			
-			.title{
-				font-size: 1.5vw;
+			.errorTitle{
+			font-size: 5vw;
 			}
+			.potta-one-regular {
+			  font-family: "Potta One", system-ui;
+			  font-weight: 400;
+			  font-style: normal;
+			}
+			
 		}
 	</style>
 </head>
@@ -79,24 +62,24 @@
 	</header>
 	<main>
 		<div class="container-fluid">
-			<div class="row pb-4">
-				<div class="col-6">
+			<div class="row justify-content-center pb-4">
+				<div class="col-6 col-md-2">
 					<img src="images/bug.jpg" class="img-fluid bugImg">
 				</div>
-				<div class="col-6 d-flex align-items-center justify-content-center">
+				<div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
 					<h1 class="potta-one-regular errorTitle">エラー<br>発生！</h1>
 				</div>
 			</div>
-			<div class="row">
-				<div class="offset-1 col-10">
+			<div class="row justify-content-center">
+				<div class="offset-1 col-10 col-md-6">
 					<div class="row txt pb-4 potta-one-regular">
 						申し訳ありません。アクセスされたページは見つかりませんでした。<br>
-						入力したアドレスが間違っているか、ページが移動、もしくは排除されているかもしれません。
-					</div>
-					<div class="d-flex align-items-center justify-content-center">
-						<a href="/" class="btn btn-primary">予約トップページへ</a>
+						入力したアドレスが間違っているか、ページが移動、もしくは削除されているかもしれません。
 					</div>
 				</div>
+			</div>
+			<div class="d-flex align-items-center justify-content-center">
+				<a href="/" class="btn btn-primary">予約トップページへ</a>
 			</div>
 		</div>
 	</main>
