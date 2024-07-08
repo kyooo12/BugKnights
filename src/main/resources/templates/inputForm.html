@@ -2,29 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>入力画面</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 		.header{
-	        font-size: 70px;
+	        font-size: 7vw;
         }
-        
-        .btn{
-			 width: 350px;
-             height:80px;
-             font-size: 40px;
-		}
 		
 		.txt{
 			font-weight: bold; 
-			font-size: 60px;
+			font-size: 6vw;
 		}
         
         .txtbox{
 		    display: inline-block;
 		    width: 100%;
-		    padding: 1px;
+		    padding: 2vw;
 		    border: 1px solid #999;
 		    box-sizing: border-box;
 		    background: #f2f2f2;
@@ -32,70 +27,123 @@
 		}
 		
 		.txtbox::-webkit-input-placeholder{
-			position: relative;
+            font-size: 100%;
 		}
 		
 		.comment{
 			background-color: #f2f2f2;
-			width:100%;
-			height: 400px;
-			font-size: 50px;
+			width: 100%;
+			height: 40vw;
+			font-size: 3vw;
 		}
 		
 		.count{
-			font-size: 30px;
+			font-size: 3vw;
 		}
+
+        .btn{
+			 width: 30vw;
+             height:8vw;
+             font-size: 3vw;
+		}
+
+        @media screen and (min-width:768px) {
+            .header{
+                font-size: 3.5vw;
+            }
+            
+            .txt{
+                font-weight: bold; 
+                font-size: 2vw;
+            }
+            
+            .txtbox{
+                display: inline-block;
+                width: 30vw;
+                height: 2vw;
+                border: 1px solid #999;
+                box-sizing: border-box;
+                background: #f2f2f2;
+                margin: 0.5vw 0;
+                font-size: 2vw;
+            }
+            
+            .txtbox::-webkit-input-placeholder{
+                font-size: 2vw;
+            }
+            
+            .comment{
+                background-color: #f2f2f2;
+                width: 30vw;
+                height: 12vw;
+                font-size: 1vw;
+            }
+            
+            .count{
+                font-size: 1vw;
+            }
+
+            .btn{
+                width: 12vw;
+                height:3vw;
+                font-size: 1vw;
+            }
+        }
         
 	</style>
 </head>
 <body>
-    <header class="header">
-        入力画面
+    <header class="p-2">
+        <h1 class="header">入力画面</h1>
     </header>
     <main>
-        <form action="/Confirmation" method="post" th:object="${inputForm}">
-            <div class="container-fluid">
-                <div class="row mt-5 justify-content-center">
-                    <div class="txt col-10">
+        <div class="container-fluid"></div>
+            <form action="/Confirmation" method="post" th:object="${inputForm}">
+            
+                <div class="row mt-3 justify-content-center">
+                    <div class="txt col-10 col-md-8 offset-md-4">
                         氏名
                     </div>
                 </div>
-
                 <div class="row justify-content-center">
-                    	<input class="txtbox col-10 p-4 h1" type="text" name="userName" th:value="*{userName}" maxlength="30">
+                    <div class="col-10 col-md-8 offset-md-4">
+                    	<input class="txtbox" type="text" name="userName" th:value="*{userName}" maxlength="30">
                 		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+                    </div>
                 </div>
-                
-                <div class="row mt-5 justify-content-center">
-                    <div class="txt col-10">
+                <div class="row mt-3 justify-content-center">
+                    <div class="txt col-10 col-md-8 offset-md-4">
                        メールアドレス
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input class="txtbox col-10 p-4 h1" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}" maxlength="254">
-                    <span th:if="${#fields.hasErrors('userMail')}" th:errors="*{userMail}"></span>
+                    <div class="col-10 col-md-8 offset-md-4">
+                        <input class="txtbox" type="email" name="userMail" placeholder="12345@example.com" th:value="*{userMail}" maxlength="254">
+                        <span th:if="${#fields.hasErrors('userMail')}" th:errors="*{userMail}"></span>
+                    </div>
                 </div>
-                <div class="row mt-5 justify-content-center">
-                    <div class="txt col-10">
+                <div class="row mt-3 justify-content-center">
+                    <div class="txt col-10 col-md-8 offset-md-4">
                         ご要望・ご相談
                     </div>
                 </div>
                 <div class="row justify-content-center">
-					<div class="col-10 mb-3">
-                    	<textarea onkeyup="ShowLength(value);" maxlength="250" class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}"></textarea>
+					<div class="col-10 mb-3 col-md-8 offset-md-4">
+                    	<textarea onkeyup="ShowLength(value);" maxlength="250" class="comment" style="resize: none;" name="comment" id="" th:value="*{comment}" cols="50" rows="5"></textarea>
                         <div class="count">( 現在の文字数：<span id="inputlength">0文字</span>/250文字 )</div>
 					</div>
                 </div>
-                <div class="row mt-5 justify-content-center">
-					<div class="col-6 text-center">
-					    <a href="/selectTime" class="btn btn btn-primary">戻る</a>
+                <div class="row mb-3 justify-content-start">
+					<div class="offset-1 col-5 col-md-2 offset-md-4">
+					    <a href="/selectTime" class="btn btn-primary">戻る</a>
 				    </div>
-				    <div class="col-6 text-center">
-                        <button type="submit" class="btn btn btn-primary">予約内容を確認</button>
+				    <div class="offset-1 offset-md-0 col-5 col-md-2">
+                        <button type="submit" class="btn btn-primary">予約内容を確認</button>
 				    </div>
                 </div>
-            </div>
-        </form>
+            
+            </form>
+        </div>
     </main>
     <script>
 		function ShowLength( str ) {
