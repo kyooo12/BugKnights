@@ -183,6 +183,7 @@ public class ReservationController {
 					reserve.getUserName(),
 					reserve.getUserMail(),
 					reserve.getComment());
+			session.invalidate();
 			mv.addObject("code", reserve.getCode());
 			mv.setViewName("Completion");
 		} else {
