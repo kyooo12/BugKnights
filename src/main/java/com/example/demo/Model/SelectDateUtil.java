@@ -1,6 +1,7 @@
 package com.example.demo.Model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,18 @@ public class SelectDateUtil {
 				for(Reserve reserve : reserveList) {
 					if(currentDate.compareTo(reserve.getDate()) == 0) {
 						ansList.add(reserve);
+					}
+				}
+				if(currentDate.compareTo(nowDate) == 0) {
+					Integer[] reserves = new Integer[10];
+					for(int k = 0; k < ansList.size(); k++) {
+						reserves[ansList.get(k).getTime().getHour() - 10] = ansList.get(k).getTime().getHour();
+					}
+					int nowHour = LocalTime.now().getHour();
+					for(int k = 0; k < 10; k++) {
+						if(reserves[k] == null && (k + 10) <= nowHour + 1) {
+							ansList.add(new Reserve());
+						}
 					}
 				}
 				if(ansList.size() == 10) {

@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -169,15 +170,20 @@ public class ReservationController {
 	@GetMapping("/Completion")
 	public ModelAndView Completion(ModelAndView mv) {
 		Reserve reserve = (Reserve)session.getAttribute("reserve");
-		reserveRepository.setReserve(reserve.getDate(),
-									reserve.getTime(),
-									reserve.getCode(),
-									reserve.getAdviserCd(),
-									reserve.getUserName(),
-									reserve.getUserMail(),
-									reserve.getComment());
-		mv.addObject("code", reserve.getCode());
-		mv.setViewName("Completion");
+		Reserve checkReserve = 
+			reserveRepository.checkReserve(reserve.getAdviserCd(), reserve.getDate(), reserve.getTime());
+		if(Objects.isNull(checkReserve)) {
+			reserveRepository.setReserve(reserve.getDate(),
+					reserve.getTime(),
+					reserve.getCode(),
+					reserve.getAdviserCd(),
+					reserve.getUserName(),
+					reserve.getUserMail(),
+					reserve.getComment());
+			mv.addObject("code", reserve.getCode());
+			mv.setViewName("Completion");
+		} else {
+			mv.setViewName("error");		}
 		return mv;
 	}
 }
