@@ -26,6 +26,7 @@ import com.example.demo.entity.Reserve;
 import com.example.demo.form.InputForm;
 import com.example.demo.repository.AdviserRepository;
 import com.example.demo.repository.ReserveRepository;
+import com.example.demo.service.InputService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,7 @@ public class ReservationController {
 	private final HttpSession session;
 	private final ReserveRepository reserveRepository;
 	private final AdviserRepository adviserRepository;
+	private final InputService inputService;
 	
 	//TOP画面遷移
 	@GetMapping("/")
@@ -148,6 +150,7 @@ public class ReservationController {
 		LocalTime time = LocalTime.parse(stringTime);	
 		String code = ConfirmationUtil.codeGenerate(10);
 		String adviserName = (String)session.getAttribute("adviserName");
+		inputService.bookingCheck(inputForm.getUserMail(), date, time, result);
 		if(!result.hasErrors()) {
 			Reserve reserve = inputForm.getEntity();
 			reserve.setAdviserCd(adviserCd);

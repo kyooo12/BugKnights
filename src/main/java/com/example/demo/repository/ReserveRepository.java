@@ -26,6 +26,13 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 	List<Reserve> findAllByAdviserCdAndSelectDate(@Param("adviserCd") String adviserCd,
 									@Param("selectDate") LocalDate selectDate);
 	
+	@Query(value = "SELECT * FROM t_reserve "
+			+ "WHERE adviser_cd = :adviserCd AND reserve_date = :selectDate "
+			+ "AND reserve_time = :selectTime", nativeQuery = true)
+	Reserve checkReserve(@Param("adviserCd") String adviserCd,
+						@Param("selectDate") LocalDate selectDate,
+						@Param("selectTime") LocalTime selectTime);
+	
 	//予約照会SQL
 	@Query(value = "SELECT * FROM t_reserve "
 			+ "WHERE user_mail = :userMail AND reference_code = :code", nativeQuery = true)
@@ -51,4 +58,19 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 					@Param("userName") String userName,
 					@Param("userMail") String userMail,
 					@Param("comment") String comment);
+	
+	//同日時に同じメールアドレスで予約しているかの確認
+	@Query(value = "select * from t_reserve where user_mail = :userMail "
+			+ "AND reserve_date = :date AND reserve_time = :time", nativeQuery = true)
+	Reserve findByBooking(@Param("userMail")String userMail,
+			              @Param("date")LocalDate date,
+			              @Param("time")LocalTime time);
+	
+	
+	
+	
+	
+	
+	
+	
 }
